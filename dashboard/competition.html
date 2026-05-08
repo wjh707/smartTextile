@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能纺织品情报洞察系统 - 产业与市场</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+    <script src="data_industry_map.js"></script>
+    <script src="data_smart_textile_data.js"></script>
+    <script src="data_company_news.js"></script>
+    <script src="data_summary.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; color: #333; }
+        .navbar { background: linear-gradient(135deg, #1565C0, #00897B); padding: 0 30px; display: flex; align-items: center; height: 64px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+        .navbar .brand { color: #fff; font-size: 20px; font-weight: 700; letter-spacing: 1px; margin-right: 40px; white-space: nowrap; }
+        .navbar .nav-links { display: flex; gap: 6px; }
+        .navbar .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; padding: 8px 16px; border-radius: 6px; font-size: 14px; transition: all .2s; }
+        .navbar .nav-links a:hover, .navbar .nav-links a.active { background: rgba(255,255,255,0.18); color: #fff; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        .stats-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 20px; }
+        .stat-card { background: #fff; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-top: 3px solid #1565C0; transition: transform .2s; }
+        .stat-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(21,101,192,0.12); }
+        .stat-card .num { font-size: 32px; font-weight: 700; color: #1565C0; }
+        .stat-card .label { font-size: 13px; color: #888; margin-top: 4px; }
+        .stat-card:nth-child(2) { border-top-color: #00897B; }
+        .stat-card:nth-child(2) .num { color: #00897B; }
+        .stat-card:nth-child(3) { border-top-color: #e67e22; }
+        .stat-card:nth-child(3) .num { color: #e67e22; }
+        .chain-row { display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; margin-bottom: 20px; }
+        .chain-card { background: #fff; border-radius: 12px; padding: 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-top: 4px solid #1565C0; cursor: pointer; transition: all .2s; }
+        .chain-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(21,101,192,0.15); }
+        .chain-card.active { border-top-color: #00897B; background: #f0faf8; }
+        .chain-card .icon { font-size: 28px; margin-bottom: 6px; }
+        .chain-card h4 { font-size: 14px; color: #333; }
+        .chain-card .count { font-size: 12px; color: #888; margin-top: 4px; }
+        .company-section { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 20px; }
+        .company-section h3 { font-size: 16px; margin-bottom: 12px; padding-left: 10px; border-left: 3px solid #1565C0; }
+        .company-section h3 span { font-size: 13px; color: #888; font-weight: 400; }
+        .company-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 12px; }
+        .company-card { background: #f8faff; border-radius: 10px; padding: 14px; border: 1px solid #edf2f9; }
+        .company-card .name { font-size: 14px; font-weight: 600; color: #1565C0; }
+        .company-card .meta { font-size: 12px; color: #888; margin-top: 4px; }
+        .company-card .score-row { margin-top: 8px; display: flex; align-items: center; gap: 8px; }
+        .company-card .score-row .bar-bg { flex:1; height: 8px; background: #e0e0e0; border-radius: 4px; overflow: hidden; }
+        .company-card .score-row .bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg,#1565C0,#42a5f5); transition: width .5s; }
+        .company-card .score-row .score { font-size: 13px; font-weight: 600; color: #1565C0; min-width: 30px; }
+        .company-card .tags { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 4px; }
+        .company-card .tags span { background: #e3f2fd; color: #1565C0; padding: 2px 8px; border-radius: 10px; font-size: 10px; }
+        .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+        .chart-box { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+        .chart-box h3 { font-size: 16px; margin-bottom: 12px; padding-left: 10px; border-left: 3px solid #1565C0; }
+        .chart-box h3.green { border-left-color: #00897B; }
+        .chart-box .chart { width: 100%; height: 320px; }
+        .list-section { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 20px; }
+        .list-section h3 { font-size: 16px; margin-bottom: 12px; padding-left: 10px; border-left: 3px solid #1565C0; }
+        .list-table { width: 100%; border-collapse: collapse; }
+        .list-table th { background: #f0f4ff; text-align: left; padding: 10px 12px; font-size: 13px; color: #555; border-bottom: 2px solid #e0e8f0; }
+        .list-table td { padding: 10px 12px; font-size: 13px; border-bottom: 1px solid #f0f0f0; }
+        .list-table tr:hover { background: #f8faff; }
+        .tag { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 500; background: #e3f2fd; color: #1565C0; margin-right: 4px; }
+        .tag.green { background: #e0f2f1; color: #00897B; }
+        .tag.orange { background: #fff3e0; color: #e67e22; }
+        .tag.purple { background: #f3e5f5; color: #8e44ad; }
+        .loading { text-align: center; padding: 80px; font-size: 18px; color: #999; }
+        .error-msg { text-align: center; padding: 40px; color: #c62828; background: #ffebee; border-radius: 12px; margin: 20px; }
+        .footer { text-align: center; padding: 20px; color: #999; font-size: 12px; }
+        @media (max-width: 900px) {
+            .stats-row { grid-template-columns: repeat(2,1fr); }
+            .chain-row { grid-template-columns: repeat(3,1fr); }
+            .row2 { grid-template-columns: 1fr; }
+            .navbar { flex-wrap: wrap; height: auto; padding: 10px 16px; }
+            .navbar .brand { margin-bottom: 6px; }
+            .navbar .nav-links { flex-wrap: wrap; }
+        }
+        @media (max-width: 600px) {
+            .stats-row { grid-template-columns: 1fr; }
+            .chain-row { grid-template-columns: repeat(2,1fr); }
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar">
+    <div class="brand">🧵 智能纺织品情报洞察系统</div>
+    <div class="nav-links">
+        <a href="index.html">📊 技术监测</a>
+        <a href="policy.html">🌐 宏观环境与政策</a>
+        <a href="competition.html" class="active">🏭 产业与市场</a>
+        <a href="radar.html">🔬 技术创新</a>
+        <a href="standards.html">📋 标准与合规</a>
+    </div>
+</nav>
+<div class="container" id="appContainer">
+    <div class="loading" id="loadingIndicator">加载中...</div>
+</div>
+<div class="footer">数据更新时间：2026-05-07 08:00 | 数据来源：智能纺织品情报系统 · 仅供内部参考</div>
+<script>
+(function(){
+    var container = document.getElementById('appContainer');
+
+    function initPage(){
+        if(typeof window.INDUSTRY_MAP_DATA === 'undefined'){
+            container.innerHTML = '<div class="error-msg">❌ 数据加载失败，请确认 data_industry_map.js 已正确加载。</div>';
+            return;
+        }
+
+        var segments = window.INDUSTRY_MAP_DATA.segments;
+        var records = (typeof window.SMART_TEXTILE_DATA_DATA !== 'undefined') ? window.SMART_TEXTILE_DATA_DATA.records : [];
+
+        var totalSegments = segments.length;
+        var totalCompanies = 0;
+        var countrySet = new Set();
+        segments.forEach(function(seg){
+            totalCompanies += seg.companies.length;
+            seg.companies.forEach(function(c){ countrySet.add(c.country); });
+        });
+        var totalCountries = countrySet.size;
+
+        var segmentIcons = ['🧪','🔬','⚙️','👕','💡'];
+        var eventTypeMap = {
+            'technology_breakthrough': '技术突破',
+            'corporate_cooperation': '企业合作',
+            'policy': '政策',
+            'funding': '资金',
+            'product_launch': '产品发布',
+            'standards': '标准'
+        };
+        var eventTypeColors = {
+            'technology_breakthrough': 'blue',
+            'corporate_cooperation': 'green',
+            'policy': 'orange',
+            'funding': 'purple',
+            'product_launch': 'red',
+            'standards': 'blue'
+        };
+
+        var currentSeg = 0;
+
+        function renderChainCards(){
+            var html = '';
+            segments.forEach(function(seg, i){
+                var active = i === currentSeg ? ' active' : '';
+                html += '<div class="chain-card'+active+'" onclick="selectSegment('+i+')">';
+                html += '<div class="icon">'+(segmentIcons[i]||'🏢')+'</div>';
+                html += '<h4>'+seg.name+'</h4>';
+                html += '<div class="count">🏢 '+seg.companies.length+' 家企业</div>';
+                html += '</div>';
+            });
+            return html;
+        }
+
+        function renderCompanies(idx){
+            var seg = segments[idx];
+            var html = '';
+            seg.companies.forEach(function(c){
+                var flagMap = {'美国':'🇺🇸','日本':'🇯🇵','中国':'🇨🇳','欧洲':'🇪🇺','加拿大':'🇨🇦','瑞士':'🇨🇭','韩国':'🇰🇷'};
+                var flag = flagMap[c.country] || '🌍';
+                html += '<div class="company-card">';
+                html += '<div class="name">'+c.name+'</div>';
+                html += '<div class="meta">'+flag+' '+c.country+'</div>';
+                html += '<div class="score-row"><span class="score">'+(c.strength||5)+'</span><div class="bar-bg"><div class="bar-fill" style="width:'+((c.strength||5)*10)+'%"></div></div></div>';
+                var techs = (c.key_tech||'').split(',').map(function(t){ return t.trim(); });
+                html += '<div class="tags">'+techs.map(function(t){ return '<span>'+t+'</span>'; }).join('')+'</div>';
+                html += '</div>';
+            });
+            return html;
+        }
+
+        // Build HTML
+        var html = '';
+
+        // Stats
+        html += '<div class="stats-row">';
+        html += '<div class="stat-card"><div class="num">'+totalSegments+'</div><div class="label">产业链环节数</div></div>';
+        html += '<div class="stat-card"><div class="num">'+totalCompanies+'</div><div class="label">企业总数</div></div>';
+        html += '<div class="stat-card"><div class="num">'+totalCountries+'</div><div class="label">覆盖国家数</div></div>';
+        html += '</div>';
+
+        // Chain cards
+        html += '<div class="chain-row" id="chainRow">'+renderChainCards()+'</div>';
+
+        // Company section
+        html += '<div class="company-section">';
+        html += '<h3>🏢 企业详情 <span id="chainTitle">— '+segments[currentSeg].name+'</span></h3>';
+        html += '<div class="company-list" id="companyList">'+renderCompanies(currentSeg)+'</div>';
+        html += '</div>';
+
+        // Charts row
+        html += '<div class="row2">';
+        html += '<div class="chart-box"><h3>各环节平均竞争力</h3><div id="compChart" class="chart"></div></div>';
+        html += '<div class="chart-box"><h3 class="green">国家分布</h3><div id="regionChart" class="chart"></div></div>';
+        html += '</div>';
+
+        // Market dynamics
+        html += '<div class="list-section">';
+        html += '<h3>📋 市场动态</h3>';
+        html += '<table class="list-table"><thead><tr><th>标题</th><th>日期</th><th>来源</th><th>类型</th></tr></thead><tbody id="marketList"></tbody></table>';
+        html += '</div>';
+
+        container.innerHTML = html;
+
+        // Select segment function
+        window.selectSegment = function(idx){
+            currentSeg = idx;
+            document.getElementById('chainRow').innerHTML = renderChainCards();
+            document.getElementById('companyList').innerHTML = renderCompanies(idx);
+            document.getElementById('chainTitle').textContent = '— '+segments[idx].name;
+        };
+
+        // Competition chart
+        var compData = segments.map(function(seg){
+            var avg = seg.companies.reduce(function(s,c){ return s + (c.strength||5); }, 0) / seg.companies.length;
+            return { name: seg.name, value: Math.round(avg*10)/10 };
+        });
+        var compChart = echarts.init(document.getElementById('compChart'));
+        compChart.setOption({
+            tooltip: { trigger:'axis', formatter: function(p){ return p[0].name+'<br/>平均竞争力: '+p[0].value; } },
+            grid: { left:'10%', right:'6%', bottom:'15%', top:'8%', containLabel:true },
+            xAxis: { type:'category', data: compData.map(function(d){ return d.name; }), axisLabel:{rotate:15,fontSize:11} },
+            yAxis: { type:'value', name:'竞争力均分', min:0, max:10 },
+            series: [{
+                type:'bar',
+                data: compData.map(function(d,i){
+                    return { value: d.value, itemStyle: { color: new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:['#1565C0','#00897B','#e67e22','#8e44ad','#27ae60'][i]},{offset:1,color:'#e0e8f0'}]), borderRadius:[5,5,0,0] } };
+                }),
+                barWidth:'55%',
+                label:{show:true,position:'top',fontSize:12}
+            }]
+        });
+
+        // Region pie
+        var regionMap = {};
+        segments.forEach(function(seg){
+            seg.companies.forEach(function(c){
+                if(!regionMap[c.country]) regionMap[c.country] = 0;
+                regionMap[c.country]++;
+            });
+        });
+        var regData = Object.keys(regionMap).map(function(k){ return { name: k, value: regionMap[k] }; });
+        var regionChart = echarts.init(document.getElementById('regionChart'));
+        regionChart.setOption({
+            tooltip: { trigger:'item', formatter:'{b}: {c} 家 ({d}%)' },
+            series: [{
+                type:'pie', radius:['35%','65%'], center:['50%','50%'],
+                data: regData,
+                label:{fontSize:12},
+                itemStyle:{borderRadius:6,borderColor:'#fff',borderWidth:2},
+                color:['#1565C0','#00897B','#e67e22','#8e44ad','#27ae60','#c62828','#f39c12'],
+                emphasis:{itemStyle:{shadowBlur:10,shadowColor:'rgba(0,0,0,0.2)'}}
+            }]
+        });
+
+        window.addEventListener('resize', function(){ compChart.resize(); regionChart.resize(); });
+
+        // Market dynamics
+        var tbody = document.getElementById('marketList');
+        var marketEvents = records.filter(function(r){ return r.event_type === 'funding' || r.event_type === 'product_launch'; });
+        marketEvents.sort(function(a,b){ return b.date.localeCompare(a.date); });
+        marketEvents.forEach(function(r){
+            var tr = document.createElement('tr');
+            var typeName = eventTypeMap[r.event_type] || r.event_type;
+            var typeColor = eventTypeColors[r.event_type] || 'blue';
+            tr.innerHTML = '<td><span class="tag '+typeColor+'">'+typeName+'</span> '+r.title+'</td><td>'+r.date+'</td><td>'+r.source+'</td><td>'+typeName+'</td>';
+            tbody.appendChild(tr);
+        });
+    }
+
+    if(typeof window.INDUSTRY_MAP_DATA !== 'undefined'){
+        initPage();
+    } else {
+        var ci = setInterval(function(){
+            if(typeof window.INDUSTRY_MAP_DATA !== 'undefined'){
+                clearInterval(ci);
+                initPage();
+            }
+        }, 100);
+        setTimeout(function(){ clearInterval(ci);
+            if(document.getElementById('loadingIndicator')){
+                container.innerHTML = '<div class="error-msg">❌ 数据加载超时，请刷新页面重试。</div>';
+            }
+        }, 5000);
+    }
+})();
+</script>
+</body>
+</html>
