@@ -1,0 +1,169 @@
+window.COMPANY_NEWS_DATA = {
+  "records": [
+    {
+      "id": "CN-001",
+      "title": "李宁与华为云深化合作，发布AI运动姿态分析智能服装",
+      "date": "2026-03-08",
+      "source": "体育用品行业报告",
+      "summary": "李宁联合华为云推出第三代智能运动服装，集成柔性传感器可实时分析跑步姿态、步频、落地冲击等12项运动指标，并通过AI算法生成个性化训练建议。",
+      "company": "李宁",
+      "event_type": "product_launch",
+      "region": "中国",
+      "url": "https://www.lining.com"
+    },
+    {
+      "id": "CN-002",
+      "title": "杜邦推出新一代Intexar™导电油墨，灵敏度提升60%",
+      "date": "2025-11-15",
+      "source": "DuPont News",
+      "summary": "杜邦公司发布新一代Intexar™ PE872导电油墨，专为纺织品印刷电子设计，导电性能较上一代提升60%，耐洗次数达100次以上，适用于医疗监测智能服装。",
+      "company": "杜邦",
+      "event_type": "technology_breakthrough",
+      "region": "美国",
+      "url": "https://www.dupont.com"
+    },
+    {
+      "id": "CN-003",
+      "title": "日本东丽开发出全球最细导电纤维，直径仅3微米",
+      "date": "2025-09-20",
+      "source": "日本经济新闻",
+      "summary": "东丽株式会社宣布开发出直径仅3微米的导电复合纤维，是目前全球最细的可纺织导电纤维，可无缝编织入普通面料，实现隐形传感。",
+      "company": "东丽",
+      "event_type": "technology_breakthrough",
+      "region": "日本",
+      "url": "https://www.toray.com"
+    },
+    {
+      "id": "CN-004",
+      "title": "欧盟SmartX项目启动智能纺织能量采集研究",
+      "date": "2026-01-10",
+      "source": "欧盟地平线计划",
+      "summary": "欧盟地平线欧洲计划启动SmartX项目，资助800万欧元用于智能纺织品能量采集技术研发，由IMEC、VTT和德国亚琛工业大学等8家机构联合承担。",
+      "company": "欧盟",
+      "event_type": "funding",
+      "region": "欧洲",
+      "url": "https://ec.europa.eu"
+    },
+    {
+      "id": "CN-005",
+      "title": "德国Schoeller Textil推出工业安全智能织物工作服",
+      "date": "2025-10-05",
+      "source": "Textile World",
+      "summary": "Schoeller Textil发布新一代c_change®智能织物工作服，集成温湿度传感器和GPS定位，可在极端环境下实时监测工人生命体征并自动报警。",
+      "company": "Schoeller Textil",
+      "event_type": "product_launch",
+      "region": "欧洲",
+      "url": "https://www.schoeller-textiles.com"
+    },
+    {
+      "id": "CN-006",
+      "title": "浙江出台智能纺织品产业基金50亿元支持计划",
+      "date": "2025-09-01",
+      "source": "浙江省财政厅",
+      "summary": "浙江省设立规模50亿元的智能纺织品产业投资基金，重点投向导电纤维、柔性传感、能量采集等关键环节的研发和产业化项目。",
+      "company": "浙江省政府",
+      "event_type": "policy",
+      "region": "中国",
+      "url": "https://www.zj.gov.cn"
+    },
+    {
+      "id": "CN-007",
+      "title": "华为联合中国移动完成5G-A智能纺织远程手术示教",
+      "date": "2026-03-10",
+      "source": "华为企业业务",
+      "summary": "华为与中国移动合作，在浙江省完成基于5G-A网络的智能纺织远程手术示教，医生通过嵌入柔性传感器的智能手套远程操控手术机器人。",
+      "company": "华为",
+      "event_type": "corporate_cooperation",
+      "region": "中国",
+      "url": "https://e.huawei.com"
+    },
+    {
+      "id": "CN-008",
+      "title": "苹果申请智能织物触控面板专利，或用于Vision Pro配件",
+      "date": "2025-02-12",
+      "source": "Patently Apple",
+      "summary": "美国专利商标局披露苹果公司新专利，描述了一种可编织入织物的触控传感面板技术，未来可能用于Vision Pro头显的纺织配件。",
+      "company": "苹果",
+      "event_type": "technology_breakthrough",
+      "region": "美国",
+      "url": "https://patentlyapple.com"
+    },
+    {
+      "id": "CN-009",
+      "title": "巴斯夫推出可生物降解导电聚合物PEDOT:PSS织物涂层",
+      "date": "2025-11-08",
+      "source": "Chemical & Engineering News",
+      "summary": "巴斯夫发布新型可生物降解导电聚合物涂层，用于智能纺织品导电线路印刷，在堆肥条件下120天可完全降解，解决电子废弃物问题。",
+      "company": "巴斯夫",
+      "event_type": "technology_breakthrough",
+      "region": "欧洲",
+      "url": "https://www.basf.com"
+    },
+    {
+      "id": "CN-010",
+      "title": "Samsung C&T与首尔大学合作开发中风康复智能服装",
+      "date": "2024-09-14",
+      "source": "韩国健康新闻",
+      "summary": "三星物产(Samsung C&T)与首尔大学医院合作，开发用于中风患者康复的智能服装，集成了EMG传感器阵列和电刺激功能。",
+      "company": "Samsung C&T",
+      "event_type": "corporate_cooperation",
+      "region": "韩国",
+      "url": "https://www.samsungcnt.com"
+    },
+    {
+      "id": "CN-011",
+      "title": "全球首款全纺织集成智能衬衫获FDA二类医疗器械认证",
+      "date": "2026-01-22",
+      "source": "FDA公告",
+      "summary": "加拿大Myant公司开发的Skiin智能心电监测衬衫获得FDA二类医疗器械认证，这是全球首款全纺织集成（无刚性模块）的医疗级智能服装。",
+      "company": "Myant",
+      "event_type": "product_launch",
+      "region": "加拿大",
+      "url": "https://www.myant.ca"
+    },
+    {
+      "id": "CN-012",
+      "title": "韩国政府投资1800亿韩元建设智能纺织产业园区",
+      "date": "2025-06-10",
+      "source": "韩国产业通商资源部",
+      "summary": "韩国政府宣布投资1800亿韩元（约合人民币9.5亿元）在庆尚北道建设智能纺织产业园区，重点培育导电纤维和柔性电子织物产业集群。",
+      "company": "韩国政府",
+      "event_type": "funding",
+      "region": "韩国",
+      "url": "https://www.motie.go.kr"
+    },
+    {
+      "id": "CN-013",
+      "title": "李宁与华为云深化合作，发布AI运动姿态分析智能服装",
+      "date": "2026-03-08",
+      "source": "体育用品行业报告",
+      "summary": "李宁联合华为云推出第三代智能运动服装，集成柔性传感器可实时分析跑步姿态、步频、落地冲击等12项运动指标，并通过AI算法生成个性化训练建议。",
+      "company": "李宁",
+      "event_type": "product_launch",
+      "region": "中国",
+      "url": "https://www.lining.com"
+    },
+    {
+      "id": "CN-014",
+      "title": "以色列军方批量列装智能纺织单兵监测系统",
+      "date": "2025-05-15",
+      "source": "以色列国防部新闻",
+      "summary": "以色列国防部宣布批量列装智能纺织单兵生理监测系统，通过嵌入作战服的柔性传感器实时传输士兵心率、体温、脱水状态等数据。",
+      "company": "以色列国防部",
+      "event_type": "product_launch",
+      "region": "美国",
+      "url": "https://www.mod.gov.il"
+    },
+    {
+      "id": "CN-015",
+      "title": "IMEC展示超低功耗纺织嵌入式神经网络处理器",
+      "date": "2024-07-20",
+      "source": "ISSCC 2024",
+      "summary": "比利时IMEC在国际固态电路会议ISSCC 2024上展示全球首款纺织嵌入式神经网络处理器，功耗仅0.5mW，可在织物上实时分析ECG信号。",
+      "company": "IMEC",
+      "event_type": "technology_breakthrough",
+      "region": "欧洲",
+      "url": "https://www.imec-int.com"
+    }
+  ]
+};
