@@ -1,0 +1,217 @@
+window.INDUSTRY_MAP_DATA = {
+  "segments": [
+    {
+      "code": "upstream-materials",
+      "name": "上游材料",
+      "companies": [
+        {
+          "name": "杜邦 (DuPont)",
+          "country": "美国",
+          "strength": 9,
+          "key_tech": "Intexar导电油墨, 莱卡纤维, PE基材",
+          "description": "全球领先的材料科学公司，Intexar导电油墨已应用于多款智能服装产品，在导电纤维和柔性基材领域拥有深厚技术积累。"
+        },
+        {
+          "name": "东丽 (Toray)",
+          "country": "日本",
+          "strength": 8,
+          "key_tech": "碳纤维导电织物, 纳米导电涂层, Hitoe传感纤维",
+          "description": "日本最大纺织材料商，Hitoe系列导电传感纤维已实现量产，与NTT合作开发医疗监测服装。"
+        },
+        {
+          "name": "帝人 (Teijin)",
+          "country": "日本",
+          "strength": 7,
+          "key_tech": "导电聚酯纤维, 柔性电极材料",
+          "description": "在导电聚酯纤维和柔性电极材料方面有长期研发投入，产品应用于工业安全与医疗领域。"
+        },
+        {
+          "name": "Bekaert",
+          "country": "欧洲",
+          "strength": 8,
+          "key_tech": "金属化纤维, Bekinox不锈钢纤维",
+          "description": "比利时公司，全球领先的金属化纤维供应商，Bekinox不锈钢纤维广泛应用于防静电和智能纺织品。"
+        },
+        {
+          "name": "深圳市柔电科技",
+          "country": "中国",
+          "strength": 6,
+          "key_tech": "柔性导电薄膜, 可拉伸电极",
+          "description": "中国柔性电子材料新锐企业，专注于可拉伸导电薄膜和柔性电极的研发与量产。"
+        }
+      ]
+    },
+    {
+      "code": "midstream-sensors",
+      "name": "中游传感",
+      "companies": [
+        {
+          "name": "AiQ Smart Clothing",
+          "country": "美国",
+          "strength": 8,
+          "key_tech": "生物传感服装, ECG/EKG监测, 纺织电极",
+          "description": "智能服装传感器领域的先驱，其纺织电极技术可实现心电、肌电等多参数实时监测。"
+        },
+        {
+          "name": "Sensoria",
+          "country": "美国",
+          "strength": 7,
+          "key_tech": "纺织压力传感器, 运动分析, 智能袜",
+          "description": "专注智能袜和鞋垫压力传感系统，产品广泛应用于运动分析和步态研究。"
+        },
+        {
+          "name": "Myant",
+          "country": "加拿大",
+          "strength": 7,
+          "key_tech": "Skiin智能纺织平台, 全身传感",
+          "description": "开发Skiin智能服装平台，集成多种生物传感器，覆盖心电、体温、活动量等监测。"
+        },
+        {
+          "name": "VTT Technical Research Centre",
+          "country": "欧洲",
+          "strength": 8,
+          "key_tech": "印刷电子传感器, 湿度传感纤维",
+          "description": "芬兰国家技术研究中心，在印刷电子和纺织传感器领域拥有大量核心专利和原型产品。"
+        },
+        {
+          "name": "Textronics",
+          "country": "美国",
+          "strength": 6,
+          "key_tech": "弹力导电织物, 心率监测服装",
+          "description": "从Adidas分离的智能纺织品公司，专注心率监测运动服装的传感技术。"
+        }
+      ]
+    },
+    {
+      "code": "midstream-integration",
+      "name": "中游集成",
+      "companies": [
+        {
+          "name": "Schoeller Textil AG",
+          "country": "瑞士",
+          "strength": 8,
+          "key_tech": "c_change智能织物, 电子封装技术, 防水导电连接",
+          "description": "瑞士高端功能纺织品商，在纺织电子一体化封装和防水导电连接器方面技术领先。"
+        },
+        {
+          "name": "Ohmatex",
+          "country": "欧洲",
+          "strength": 7,
+          "key_tech": "纺织集成母线, 柔性互联, 可洗电子模块",
+          "description": "丹麦公司，专注纺织集成布线和可水洗电子模块，解决智能服装的耐用性和可洗涤问题。"
+        },
+        {
+          "name": "Imec",
+          "country": "欧洲",
+          "strength": 9,
+          "key_tech": "柔性芯片, 纺织嵌入式微系统, 超薄封装",
+          "description": "欧洲最大微电子研究中心，在柔性芯片和纺织嵌入式微系统领域有突破性技术。"
+        },
+        {
+          "name": "Holst Centre",
+          "country": "欧洲",
+          "strength": 8,
+          "key_tech": "柔性混合电子, 纺织集成工艺, 卷对卷制造",
+          "description": "比利时/荷兰联合研究中心，开创了柔性混合电子与纺织集成的卷对卷生产工艺。"
+        },
+        {
+          "name": "南通强生石墨烯",
+          "country": "中国",
+          "strength": 6,
+          "key_tech": "石墨烯纺织集成, 发热织物, 抗静电",
+          "description": "中国石墨烯功能纺织品代表企业，将石墨烯材料集成到纺织工艺中。"
+        }
+      ]
+    },
+    {
+      "code": "downstream-apparel",
+      "name": "下游服装",
+      "companies": [
+        {
+          "name": "Hexoskin",
+          "country": "加拿大",
+          "strength": 8,
+          "key_tech": "智能T恤, 心肺监测, 睡眠分析服装",
+          "description": "全球领先的智能服装品牌，Hexoskin智能T恤可实时监测心率、呼吸和活动量，广泛用于科研和运动。"
+        },
+        {
+          "name": "Under Armour",
+          "country": "美国",
+          "strength": 7,
+          "key_tech": "UA Record装备, 运动传感服装, 连接平台",
+          "description": "美国运动服装巨头，通过UA Record平台和传感服装切入智能运动监测市场。"
+        },
+        {
+          "name": "李宁 (Li-Ning)",
+          "country": "中国",
+          "strength": 6,
+          "key_tech": "智能跑鞋, 运动监测服装, WEARDAYS",
+          "description": "中国运动品牌龙头，推出多款智能运动鞋和服装，探索运动数据服务。"
+        },
+        {
+          "name": "Google ATAP / Levi's Jacquard",
+          "country": "美国",
+          "strength": 7,
+          "key_tech": "Jacquard触控织物, 智能夹克, 手势交互",
+          "description": "Google先进技术与Levi's合作的Jacquard项目，实现将触控交互嵌入日常服装。"
+        },
+        {
+          "name": "Ralph Lauren",
+          "country": "美国",
+          "strength": 5,
+          "key_tech": "Polo Tech智能T恤, 时尚智能服装",
+          "description": "奢侈时尚品牌率先推出Polo Tech智能T恤，将生物传感与高端时尚结合。"
+        },
+        {
+          "name": "小米生态链 / 华米科技",
+          "country": "中国",
+          "strength": 6,
+          "key_tech": "Amazfit穿戴设备, 智能织物配件",
+          "description": "中国智能穿戴设备巨头，逐步从手环向智能织物穿戴领域扩展。"
+        }
+      ]
+    },
+    {
+      "code": "downstream-solutions",
+      "name": "下游解决方案",
+      "companies": [
+        {
+          "name": "百洋医药智能科技",
+          "country": "中国",
+          "strength": 6,
+          "key_tech": "远程医疗监测方案, 慢性病管理服装",
+          "description": "提供基于智能服装的远程医疗监测解决方案，重点面向心血管和呼吸系统慢性病管理。"
+        },
+        {
+          "name": "Philips Healthcare",
+          "country": "欧洲",
+          "strength": 8,
+          "key_tech": "医疗级可穿戴监护, 连续监测方案",
+          "description": "全球医疗健康领导品牌，开发基于智能纺织品的院内和居家连续监护解决方案。"
+        },
+        {
+          "name": "Polar Electro",
+          "country": "欧洲",
+          "strength": 7,
+          "key_tech": "运动心率监测方案, 团队运动分析",
+          "description": "芬兰运动心率监测专家，提供团队运动智能服装分析系统和个性化训练方案。"
+        },
+        {
+          "name": "Zephyr Technology (Medtronic)",
+          "country": "美国",
+          "strength": 8,
+          "key_tech": "BioHarness心肺监测, 军事人员监测",
+          "description": "被美敦力收购后成为军事和消防领域智能服装监测方案的核心供应商。"
+        },
+        {
+          "name": "东软医疗",
+          "country": "中国",
+          "strength": 5,
+          "key_tech": "可穿戴健康管理平台, 区域医疗",
+          "description": "中国医疗IT巨头，布局基于智能纺织品的社区和居家健康管理平台。"
+        }
+      ]
+    }
+  ],
+  "updatedAt": "2026-05-07"
+};
