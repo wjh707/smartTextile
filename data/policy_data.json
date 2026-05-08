@@ -1,0 +1,169 @@
+{
+  "records": [
+    {
+      "id": "POL-001",
+      "title": "EU Finalises Rules to Make Fashion Pay to Clean Up Textile Waste",
+      "date": "2025-09-10",
+      "country": "欧盟",
+      "type": "environmental_regulation",
+      "status": "effective",
+      "source": "European Commission",
+      "summary": "欧盟正式通过纺织品废弃物管理法规，要求时尚品牌和纺织企业为纺织废弃物处理承担延伸生产者责任（EPR），建立全链条可追溯体系，推动纺织品循环经济转型。",
+      "url": "https://environment.ec.europa.eu/topics/waste-and-recycling/textile-waste_en"
+    },
+    {
+      "id": "POL-002",
+      "title": "工信部纺织工业数字化转型四大专项行动",
+      "date": "2025-07-29",
+      "country": "中国",
+      "type": "industry_policy",
+      "status": "effective",
+      "source": "经济形势报告网",
+      "summary": "工信部发布纺织工业数字化转型四大专项行动：智能制造装备升级、工业互联网平台建设、数据要素价值释放和数字化人才培育，推动纺织行业高端化、智能化、绿色化发展。",
+      "url": "https://www.miit.gov.cn/"
+    },
+    {
+      "id": "POL-003",
+      "title": "国务院2026年'两新'政策——支持纺织设备更新和技术改造",
+      "date": "2025-12-31",
+      "country": "中国",
+      "type": "subsidy_funding",
+      "status": "effective",
+      "source": "人民日报",
+      "summary": "2026年大规模设备更新和消费品以旧换新政策部署落地，纺织行业被纳入重点支持领域，企业采购智能纺织设备可享受投资补助和税收优惠。",
+      "url": "https://www.gov.cn/"
+    },
+    {
+      "id": "POL-004",
+      "title": "2025年中国及31省市纺织行业政策汇总——加速推进高端化",
+      "date": "2025-06-09",
+      "country": "中国",
+      "type": "industry_policy",
+      "status": "effective",
+      "source": "前瞻产业研究院",
+      "summary": "全国31省市发布纺织产业升级政策，重点支持智能纺织材料、功能性面料、纺织智能制造装备方向，各省设立专项基金和产业园配套措施。",
+      "url": "https://www.qianzhan.com/"
+    },
+    {
+      "id": "POL-005",
+      "title": "广州开发区支持人工智能赋能纺织产业高质量发展",
+      "date": "2025-06-26",
+      "country": "中国",
+      "type": "industry_policy",
+      "status": "effective",
+      "source": "广州市政府",
+      "summary": "广州开发区发布AI产业扶持政策，明确支持人工智能在纺织行业质量检测、工艺优化、智能排产等场景的应用，对示范项目给予最高500万元补贴。",
+      "url": "https://www.gz.gov.cn/"
+    },
+    {
+      "id": "POL-006",
+      "title": "佛山市纺织业数智化转型升级专项政策",
+      "date": "2025-08-19",
+      "country": "中国",
+      "type": "industry_policy",
+      "status": "effective",
+      "source": "佛山市政府",
+      "summary": "佛山环两江先行区出台纺织产业焕新政策，设立纺织数字化转型专项基金，支持企业建设智能工厂、5G+工业互联网应用，对改造后生产效率提升超20%的企业给予奖励。",
+      "url": "https://www.foshan.gov.cn/"
+    },
+    {
+      "id": "POL-007",
+      "title": "EU Digital Product Passport for Textiles Regulation",
+      "date": "2025-07-15",
+      "country": "欧盟",
+      "type": "environmental_regulation",
+      "status": "effective",
+      "source": "European Commission",
+      "summary": "欧盟纺织品数字产品护照（DPP）法规实施，要求所有在欧盟市场销售的纺织品（含智能纺织品）需提供全生命周期数字标识，包括材料成分、可回收性、碳足迹等数据。",
+      "url": "https://ec.europa.eu/environment/topics/circular-economy_en"
+    },
+    {
+      "id": "POL-008",
+      "title": "US Textile and Apparel Import Safety & Compliance Enhancement Act",
+      "date": "2025-11-20",
+      "country": "美国",
+      "type": "safety_standard",
+      "status": "effective",
+      "source": "CPSC",
+      "summary": "美国消费品安全委员会(CPSC)更新纺织品进口安全标准，新增智能纺织品电子元件的EMC兼容性要求、电池安全标准和射频辐射限值，覆盖可穿戴智能服装产品。",
+      "url": "https://www.cpsc.gov/"
+    },
+    {
+      "id": "POL-009",
+      "title": "IEC 63203 Standard for Wearable Electronic Devices and Technologies",
+      "date": "2025-08-01",
+      "country": "国际",
+      "type": "technical_standard",
+      "status": "effective",
+      "source": "IEC",
+      "summary": "国际电工委员会(IEC)发布可穿戴电子设备及技术系列标准IEC 63203，涵盖智能纺织品的电气安全、洗涤耐久性测试方法、无线通信性能和穿戴舒适性评估。",
+      "url": "https://www.iec.ch/"
+    },
+    {
+      "id": "POL-010",
+      "title": "日本经济产业省'智能纤维产业战略2026'",
+      "date": "2026-01-15",
+      "country": "日本",
+      "type": "industry_policy",
+      "status": "effective",
+      "source": "经济产业省",
+      "summary": "日本发布智能纤维产业战略，重点支持碳纤维复合智能织物、热电转换纤维、生体信号监测纺织品三大方向，设立400亿日元研发基金，目标2030年智能纤维市场规模翻番。",
+      "url": "https://www.meti.go.jp/"
+    },
+    {
+      "id": "POL-011",
+      "title": "韩国'智能纺织品产业振兴计划2030'",
+      "date": "2025-10-15",
+      "country": "韩国",
+      "type": "industry_policy",
+      "status": "effective",
+      "source": "韩国产业通商资源部",
+      "summary": "韩国政府公布智能纺织品产业振兴计划，投资1800亿韩元建设龟尾、大邱两个智能纺织特色产业园区，推动柔性电子纺织品的商业化应用。",
+      "url": "https://www.motie.go.kr/"
+    },
+    {
+      "id": "POL-012",
+      "title": "UK Medical Devices Regulation Update: Software as a Medical Device in Smart Textiles",
+      "date": "2025-09-01",
+      "country": "英国",
+      "type": "safety_standard",
+      "status": "effective",
+      "source": "MHRA",
+      "summary": "英国药品和健康产品管理局(MHRA)更新医疗器械监管指南，明确嵌入智能纺织品的健康监测软件属医疗器械范畴，需通过UKCA认证后方可上市销售。",
+      "url": "https://www.gov.uk/government/organisations/mhra"
+    },
+    {
+      "id": "POL-013",
+      "title": "浙江省智能纺织产业促进条例（2026年草案）",
+      "date": "2026-03-01",
+      "country": "中国",
+      "type": "industry_policy",
+      "status": "proposed",
+      "source": "浙江省政府",
+      "summary": "浙江省发布智能纺织产业促进条例草案，设50亿元产业基金，支持柔性传感、智能织造、绿色印染等领域的技术攻关和成果转化，推动建设智能纺织创新中心和公共技术服务平台。",
+      "url": "https://www.zj.gov.cn/"
+    },
+    {
+      "id": "POL-014",
+      "title": "中国纺织行业'碳中和工厂'认证标准发布",
+      "date": "2025-10-21",
+      "country": "中国",
+      "type": "technical_standard",
+      "status": "effective",
+      "source": "中国纺织工业联合会",
+      "summary": "中国纺织工业联合会发布纺织行业碳中和工厂评价标准，从能源结构、碳排放核算、碳抵消措施三个维度建立认证体系，推动纺织行业绿色低碳转型。",
+      "url": "https://www.cntac.org.cn/"
+    },
+    {
+      "id": "POL-015",
+      "title": "India National Smart Textile Mission 2025-2030",
+      "date": "2025-07-01",
+      "country": "印度",
+      "type": "industry_policy",
+      "status": "effective",
+      "source": "Ministry of Textiles",
+      "summary": "印度纺织部启动国家智能纺织使命计划，投资500亿卢比支持智能纺织品研发中心建设、纺织STEM人才培训和产学研合作，重点发展医疗智能纺织品和军用智能织物。",
+      "url": "https://texmin.nic.in/"
+    }
+  ]
+}
