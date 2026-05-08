@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能纺织品情报洞察系统 - 技术创新</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+    <script src="data_tech_radar.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; color: #333; }
+        .navbar { background: linear-gradient(135deg, #1565C0, #00897B); padding: 0 30px; display: flex; align-items: center; height: 64px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+        .navbar .brand { color: #fff; font-size: 20px; font-weight: 700; letter-spacing: 1px; margin-right: 40px; white-space: nowrap; }
+        .navbar .nav-links { display: flex; gap: 6px; }
+        .navbar .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; padding: 8px 16px; border-radius: 6px; font-size: 14px; transition: all .2s; }
+        .navbar .nav-links a:hover, .navbar .nav-links a.active { background: rgba(255,255,255,0.18); color: #fff; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .stats-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 20px; }
+        .stat-card { background: #fff; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-top: 3px solid #1565C0; transition: transform .2s; }
+        .stat-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(21,101,192,0.12); }
+        .stat-card .num { font-size: 32px; font-weight: 700; color: #1565C0; }
+        .stat-card .label { font-size: 13px; color: #888; margin-top: 4px; }
+        .stat-card:nth-child(2) { border-top-color: #00897B; }
+        .stat-card:nth-child(2) .num { color: #00897B; }
+        .stat-card:nth-child(3) { border-top-color: #e67e22; }
+        .stat-card:nth-child(3) .num { color: #e67e22; }
+        .chart-box { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 20px; }
+        .chart-box h3 { font-size: 16px; margin-bottom: 12px; padding-left: 10px; border-left: 3px solid #1565C0; }
+        #radarChart { width: 100%; height: 480px; }
+        .controls { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
+        .controls label { font-size: 14px; font-weight: 500; color: #555; }
+        .controls input[type=range] { width: 300px; accent-color: #1565C0; }
+        .controls .year-label { font-size: 18px; font-weight: 700; color: #1565C0; min-width: 60px; }
+        .tech-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 20px; }
+        .tech-card { background: #fff; border-radius: 12px; padding: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-left: 4px solid #1565C0; cursor: pointer; transition: all .2s; }
+        .tech-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(21,101,192,0.15); }
+        .tech-card.active { border-left-color: #00897B; background: #f0faf8; }
+        .tech-card h4 { font-size: 15px; color: #1565C0; margin-bottom: 6px; }
+        .tech-card .meta { font-size: 12px; color: #888; margin-bottom: 4px; }
+        .tech-card .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+        .tech-card .tags span { background: #e3f2fd; color: #1565C0; padding: 2px 8px; border-radius: 10px; font-size: 11px; }
+        .detail-panel { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 20px; display: none; }
+        .detail-panel.show { display: block; }
+        .detail-panel h4 { font-size: 18px; color: #1565C0; margin-bottom: 10px; }
+        .detail-panel p { font-size: 14px; color: #555; line-height: 1.8; }
+        .detail-panel .bar-wrap { margin: 8px 0; }
+        .detail-panel .bar-wrap .bar-label { font-size: 13px; display: flex; justify-content: space-between; }
+        .detail-panel .bar-wrap .bar { height: 8px; background: #e0e0e0; border-radius: 4px; overflow: hidden; margin-top: 3px; }
+        .detail-panel .bar-wrap .bar-fill { height: 100%; background: linear-gradient(90deg,#1565C0,#42a5f5); border-radius: 4px; transition: width .3s; }
+        .loading { text-align: center; padding: 80px; font-size: 18px; color: #999; }
+        .error-msg { text-align: center; padding: 40px; color: #c62828; background: #ffebee; border-radius: 12px; margin: 20px; }
+        .footer { text-align: center; padding: 20px; color: #999; font-size: 12px; }
+        @media (max-width: 768px) {
+            .tech-cards { grid-template-columns: 1fr 1fr; }
+            .stats-row { grid-template-columns: repeat(2,1fr); }
+            .controls input[type=range] { width: 180px; }
+            .navbar { flex-wrap: wrap; height: auto; padding: 10px 16px; }
+            .navbar .brand { margin-bottom: 6px; }
+            .navbar .nav-links { flex-wrap: wrap; }
+        }
+        @media (max-width: 480px) {
+            .tech-cards { grid-template-columns: 1fr; }
+            .stats-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar">
+    <div class="brand">🧵 智能纺织品情报洞察系统</div>
+    <div class="nav-links">
+        <a href="index.html">📊 技术监测</a>
+        <a href="policy.html">🌐 宏观环境与政策</a>
+        <a href="competition.html">🏭 产业与市场</a>
+        <a href="radar.html" class="active">🔬 技术创新</a>
+        <a href="standards.html">📋 标准与合规</a>
+    </div>
+</nav>
+<div class="container" id="appContainer">
+    <div class="loading" id="loadingIndicator">加载中...</div>
+</div>
+<div class="footer">数据更新时间：2026-05-07 08:00 | 数据来源：智能纺织品情报系统 · 仅供内部参考</div>
+<script>
+(function(){
+    var container = document.getElementById('appContainer');
+
+    function initPage(){
+        if(typeof window.TECH_RADAR_DATA === 'undefined'){
+            container.innerHTML = '<div class="error-msg">❌ 数据加载失败，请确认 data_tech_radar.js 已正确加载。</div>';
+            return;
+        }
+
+        var techData = window.TECH_RADAR_DATA;
+        var technologies = techData.technologies;
+        var years = ['2022','2023','2024','2025','2026'];
+        var techNames = technologies.map(function(t){ return t.name; });
+
+        // Stats
+        var totalTechs = technologies.length;
+        var totalPatents = 0;
+        technologies.forEach(function(t){
+            var maxScore = 0;
+            years.forEach(function(y){ if(t.scores[y] && t.scores[y] > maxScore) maxScore = t.scores[y]; });
+            totalPatents += maxScore;
+        });
+        // Annual change: diff between 2025 and 2026
+        var total2025 = 0, total2026 = 0;
+        technologies.forEach(function(t){
+            total2025 += (t.scores['2025'] || 0);
+            total2026 += (t.scores['2026'] || 0);
+        });
+        var change = total2026 - total2025;
+        var changeStr = (change > 0 ? '+' : '') + change;
+
+        var currentYear = 2026;
+        var currentTechIdx = 0;
+
+        // Tech descriptions (from data)
+        var techDetails = [
+            { keywords: ['石墨烯','导电率','碳纳米管','银纳米线','柔性电路'] },
+            { keywords: ['压阻','电容','应变','生理监测','无感穿戴'] },
+            { keywords: ['压电','热电','摩擦电','能量管理','柔性电池'] },
+            { keywords: ['电致变色','光致变色','温致变色','光子晶体','可逆'] },
+            { keywords: ['形状记忆聚合物','SMP','热响应','自适应','智能塑形'] },
+            { keywords: ['抗菌','超疏水','纳米涂层','自清洁','银离子'] }
+        ];
+
+        function renderRadar(year){
+            var idx = year - 2022;
+            var series = years.map(function(y,i){
+                var c = ['#1565C0','#42a5f5','#00897B','#e67e22','#8e44ad'][i];
+                return {
+                    name: y,
+                    type: 'radar',
+                    data: [technologies.map(function(t){ return t.scores[y] || 0; })],
+                    areaStyle: i===idx ? { color: 'rgba(21,101,192,0.12)' } : { opacity: 0 },
+                    lineStyle: { color: c, width: i===idx ? 3 : 1.5, opacity: i===idx ? 1 : 0.5 },
+                    itemStyle: { color: c, opacity: 1 }
+                };
+            });
+            var chart = echarts.init(document.getElementById('radarChart'));
+            chart.setOption({
+                tooltip: { trigger:'item', formatter: function(p){ return p.seriesName+'<br/>'+p.name+': '+p.value; } },
+                legend: { data: years, bottom: 0, textStyle:{fontSize:12} },
+                radar: {
+                    indicator: technologies.map(function(t){ return {name: t.name, max: 10}; }),
+                    shape: 'polygon',
+                    splitNumber: 5,
+                    name: { textStyle: { fontSize: 13, color: '#333' } },
+                    splitLine: { lineStyle: { color: '#e0e8f0' } },
+                    splitArea: { areaStyle: { color: ['rgba(21,101,192,0.02)','rgba(21,101,192,0.04)'] } },
+                    axisLine: { lineStyle: { color: '#ddd' } }
+                },
+                series: series
+            });
+            window.addEventListener('resize', function(){ chart.resize(); });
+            return chart;
+        }
+
+        function renderTechCards(){
+            var html = '';
+            technologies.forEach(function(t, i){
+                var activeClass = i === currentTechIdx ? ' active' : '';
+                var currentScore = t.scores[String(currentYear)] || 0;
+                html += '<div class="tech-card'+activeClass+'" onclick="showTechDetail('+i+')">';
+                html += '<h4>'+t.name+'</h4>';
+                html += '<div class="meta">📊 当前成熟度: '+currentScore+'/10</div>';
+                html += '<div class="meta">📈 趋势: '+t.scores['2022']+'→'+t.scores['2026']+'</div>';
+                html += '<div class="tags">'+(techDetails[i] ? techDetails[i].keywords.slice(0,3).map(function(k){ return '<span>'+k+'</span>'; }).join('') : '')+'</div>';
+                html += '</div>';
+            });
+            return html;
+        }
+
+        function showTechDetail(idx){
+            currentTechIdx = idx;
+            var t = technologies[idx];
+            var det = techDetails[idx] || { keywords: [] };
+            document.getElementById('detailPanel').className = 'detail-panel show';
+            document.getElementById('detailName').textContent = t.name + ' 技术详情';
+            document.getElementById('detailDesc').textContent = t.code + ' — 该技术在2022至2026年间成熟度评分从'+t.scores['2022']+'提升至'+t.scores['2026']+'。';
+            var barsDiv = document.getElementById('detailBars');
+            barsDiv.innerHTML = '';
+            var barLabels = ['2024','2025','2026'];
+            barLabels.forEach(function(y){
+                var v = (t.scores[y] || 0) * 10;
+                var w = document.createElement('div');
+                w.className = 'bar-wrap';
+                w.innerHTML = '<div class="bar-label"><span>'+y+'年 成熟度</span><span>'+(t.scores[y]||0)+'/10</span></div><div class="bar"><div class="bar-fill" style="width:'+v+'%"></div></div>';
+                barsDiv.appendChild(w);
+            });
+            document.getElementById('detailKeywords').innerHTML = '<strong>关键词：</strong>'+det.keywords.join('、');
+            // Update cards
+            document.getElementById('techCards').innerHTML = renderTechCards();
+        }
+
+        window.showTechDetail = showTechDetail;
+
+        // Year slider
+        window.updateRadar = function(){
+            var slider = document.getElementById('yearSlider');
+            var year = parseInt(slider.value);
+            document.getElementById('yearDisplay').textContent = year;
+            currentYear = year;
+            renderRadar(year);
+            // Update cards with current year score
+            document.getElementById('techCards').innerHTML = renderTechCards();
+            showTechDetail(currentTechIdx);
+        };
+
+        // Build HTML
+        var html = '';
+
+        // Stats
+        html += '<div class="stats-row">';
+        html += '<div class="stat-card"><div class="num">'+totalTechs+'</div><div class="label">技术方向数</div></div>';
+        html += '<div class="stat-card"><div class="num">'+totalPatents+'</div><div class="label">专利申请量(模拟)</div></div>';
+        html += '<div class="stat-card"><div class="num">'+changeStr+'</div><div class="label">年度变化(2025→2026)</div></div>';
+        html += '</div>';
+
+        // Radar chart
+        html += '<div class="chart-box">';
+        html += '<h3>📡 技术演进雷达图</h3>';
+        html += '<div class="controls">';
+        html += '<label>选择年份：</label>';
+        html += '<input type="range" id="yearSlider" min="2022" max="2026" value="2026" step="1" oninput="updateRadar()">';
+        html += '<span class="year-label" id="yearDisplay">2026</span>';
+        html += '</div>';
+        html += '<div id="radarChart"></div>';
+        html += '</div>';
+
+        // Tech cards
+        html += '<div class="tech-cards" id="techCards">'+renderTechCards()+'</div>';
+
+        // Detail panel
+        html += '<div class="detail-panel" id="detailPanel">';
+        html += '<h4 id="detailName">技术详情</h4>';
+        html += '<p id="detailDesc"></p>';
+        html += '<div id="detailBars"></div>';
+        html += '<p id="detailKeywords" style="margin-top:8px;"><strong>关键词：</strong></p>';
+        html += '</div>';
+
+        container.innerHTML = html;
+
+        renderRadar(2026);
+        showTechDetail(0);
+    }
+
+    if(typeof window.TECH_RADAR_DATA !== 'undefined'){
+        initPage();
+    } else {
+        var ci = setInterval(function(){
+            if(typeof window.TECH_RADAR_DATA !== 'undefined'){
+                clearInterval(ci);
+                initPage();
+            }
+        }, 100);
+        setTimeout(function(){ clearInterval(ci);
+            if(document.getElementById('loadingIndicator')){
+                container.innerHTML = '<div class="error-msg">❌ 数据加载超时，请刷新页面重试。</div>';
+            }
+        }, 5000);
+    }
+})();
+</script>
+</body>
+</html>
