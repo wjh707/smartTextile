@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能纺织品情报系统 - 首页</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+    <script src="data_company_news.js"></script>
+    <script src="data_policy_data.js"></script>
+    <script src="data_smart_textile_data.js"></script>
+    <script src="data_papers.js"></script>
+    <script src="data_standards.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #f5f7fa; color: #333; }
+        .navbar { background: linear-gradient(135deg, #1565C0, #00897B); padding: 0 30px; display: flex; align-items: center; height: 64px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+        .navbar .brand { color: #fff; font-size: 20px; font-weight: 700; letter-spacing: 1px; margin-right: 40px; white-space: nowrap; }
+        .navbar .nav-links { display: flex; gap: 6px; flex-wrap: wrap; }
+        .navbar .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; padding: 8px 16px; border-radius: 6px; font-size: 14px; transition: all .2s; }
+        .navbar .nav-links a:hover, .navbar .nav-links a.active { background: rgba(255,255,255,0.18); color: #fff; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 30px 20px; }
+        .hero { text-align: center; margin-bottom: 36px; }
+        .hero h1 { font-size: 32px; color: #1565C0; margin-bottom: 8px; }
+        .hero p { font-size: 16px; color: #666; }
+        .stats-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 40px; }
+        .stat-card { background: #fff; border-radius: 12px; padding: 20px 10px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-top: 3px solid #1565C0; transition: transform .2s, box-shadow .2s; }
+        .stat-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(21,101,192,0.12); }
+        .stat-card .num { font-size: 30px; font-weight: 700; color: #1565C0; }
+        .stat-card .label { font-size: 12px; color: #888; margin-top: 4px; }
+        .stat-card:nth-child(2) { border-top-color: #00897B; }
+        .stat-card:nth-child(2) .num { color: #00897B; }
+        .stat-card:nth-child(3) { border-top-color: #e67e22; }
+        .stat-card:nth-child(3) .num { color: #e67e22; }
+        .stat-card:nth-child(4) { border-top-color: #8e44ad; }
+        .stat-card:nth-child(4) .num { color: #8e44ad; }
+        .stat-card:nth-child(5) { border-top-color: #27ae60; }
+        .stat-card:nth-child(5) .num { color: #27ae60; }
+        .section-title { font-size: 20px; color: #333; margin-bottom: 20px; padding-left: 12px; border-left: 4px solid #1565C0; }
+        .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px; }
+        .nav-card { background: #fff; border-radius: 14px; padding: 28px 24px 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); text-decoration: none; color: #333; display: block; transition: transform .2s, box-shadow .2s; position: relative; overflow: hidden; border: 1px solid #eee; }
+        .nav-card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(21,101,192,0.12); border-color: #1565C0; }
+        .nav-card .icon { font-size: 36px; margin-bottom: 10px; }
+        .nav-card h3 { font-size: 18px; color: #1565C0; margin-bottom: 8px; }
+        .nav-card p { font-size: 13px; color: #888; line-height: 1.6; }
+        .nav-card .badge { position: absolute; top: 14px; right: 16px; background: #e3f2fd; color: #1565C0; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+        .nav-card .arrow { margin-top: 12px; font-size: 13px; color: #1565C0; font-weight: 500; }
+        .nav-card:nth-child(2) h3 { color: #00897B; }
+        .nav-card:nth-child(2) .badge { background: #e0f2f1; color: #00897B; }
+        .nav-card:nth-child(2) .arrow { color: #00897B; }
+        .nav-card:nth-child(3) h3 { color: #e67e22; }
+        .nav-card:nth-child(3) .badge { background: #fff3e0; color: #e67e22; }
+        .nav-card:nth-child(3) .arrow { color: #e67e22; }
+        .nav-card:nth-child(4) h3 { color: #8e44ad; }
+        .nav-card:nth-child(4) .badge { background: #f3e5f5; color: #8e44ad; }
+        .nav-card:nth-child(4) .arrow { color: #8e44ad; }
+        .nav-card:nth-child(5) h3 { color: #27ae60; }
+        .nav-card:nth-child(5) .badge { background: #e8f5e9; color: #27ae60; }
+        .nav-card:nth-child(5) .arrow { color: #27ae60; }
+        .footer { text-align: center; padding: 20px; color: #999; font-size: 12px; border-top: 1px solid #eee; }
+        .error-msg { text-align: center; padding: 40px; color: #c62828; background: #ffebee; border-radius: 12px; margin: 20px; }
+        @media (max-width: 1024px) {
+            .stats-row { grid-template-columns: repeat(3, 1fr); }
+            .card-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .navbar { flex-wrap: wrap; height: auto; padding: 10px 16px; }
+            .navbar .brand { margin-bottom: 6px; font-size: 16px; }
+            .navbar .nav-links a { padding: 6px 12px; font-size: 13px; }
+            .hero h1 { font-size: 24px; }
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .stats-row { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .stat-card .num { font-size: 24px; }
+            .container { padding: 20px 12px; }
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar">
+    <div class="brand">🧵 智能纺织品情报系统</div>
+    <div class="nav-links">
+        <a href="index.html" class="active">🏠 首页总览</a>
+        <a href="market.html">🌍 市场动态</a>
+        <a href="policy.html">📜 政策法规</a>
+        <a href="tech.html">🔬 技术前沿</a>
+        <a href="research.html">🎓 科研动态</a>
+        <a href="standards.html">📋 行规标准</a>
+    </div>
+</nav>
+<div class="container" id="appContainer">
+    <div class="error-msg">⏳ 数据加载中...</div>
+</div>
+<div class="footer" id="footerBar">数据更新时间：-- | 智能纺织品情报系统 · 仅供内部参考</div>
+<script>
+(function() {
+    var container = document.getElementById('appContainer');
+
+    var techNameMap = {
+        'conductive-fiber': '导电纤维', 'flexible-sensor': '柔性传感器',
+        'energy-harvesting': '能量采集', 'embedded-circuit': '嵌入式电路',
+        'communication': '通信模块', 'integration': '纺织-电子集成工艺'
+    };
+    var sceneNameMap = {
+        'healthcare': '医疗健康', 'sports-fitness': '运动健身',
+        'military-defense': '军事国防', 'smart-home': '智能家居',
+        'fashion-entertainment': '时尚娱乐', 'industrial-safety': '工业安全',
+        'wearable-computing': '可穿戴计算'
+    };
+
+    function initPage() {
+        var smartData = window.SMART_TEXTILE_DATA;
+        var companyData = window.COMPANY_NEWS_DATA;
+        var policyData = window.POLICY_DATA;
+        var papersData = window.PAPERS_DATA;
+        var standardsData = window.STANDARDS_DATA;
+
+        if (!smartData || !smartData.records) {
+            container.innerHTML = '<div class="error-msg">❌ 数据加载失败，请确认数据文件已正确加载。</div>';
+            return;
+        }
+
+        var records = smartData.records;
+        var total = records.length;
+
+        // Stats
+        var now = new Date();
+        var curMonth = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0');
+        var monthCount = records.filter(function(r) { return r.date && r.date.substring(0,7) === curMonth; }).length;
+
+        var techSet = new Set();
+        var sceneSet = new Set();
+        var sourceSet = new Set();
+        records.forEach(function(r) {
+            if (r.tech_tags) r.tech_tags.forEach(function(t) { techSet.add(t); });
+            if (r.scene_tags) r.scene_tags.forEach(function(s) { sceneSet.add(s); });
+            if (r.source) sourceSet.add(r.source);
+        });
+
+        // Count latest items per section
+        var companyCount = companyData && companyData.records ? companyData.records.length : 0;
+        var policyCount = policyData && policyData.records ? policyData.records.length : 0;
+        var techCountVal = records.filter(function(r) { return r.event_type === 'technology_breakthrough'; }).length;
+        var papersCount = papersData && papersData.records ? papersData.records.length : 0;
+        var standardsCount = standardsData && standardsData.standards ? standardsData.standards.length : 0;
+
+        var html = '';
+
+        // Hero
+        html += '<div class="hero">';
+        html += '<h1>🧵 智能纺织品情报系统</h1>';
+        html += '<p>全球智能纺织品领域情报聚合 · 技术前沿 · 市场动态 · 政策标准 · 科研进展</p>';
+        html += '</div>';
+
+        // Stats row (5 cards)
+        html += '<div class="stats-row">';
+        html += '<div class="stat-card"><div class="num">' + total + '</div><div class="label">📦 情报总量</div></div>';
+        html += '<div class="stat-card"><div class="num">' + monthCount + '</div><div class="label">📅 本月更新</div></div>';
+        html += '<div class="stat-card"><div class="num">' + techSet.size + '</div><div class="label">🔬 覆盖技术</div></div>';
+        html += '<div class="stat-card"><div class="num">' + sceneSet.size + '</div><div class="label">🎯 覆盖场景</div></div>';
+        html += '<div class="stat-card"><div class="num">' + sourceSet.size + '</div><div class="label">🏢 覆盖机构</div></div>';
+        html += '</div>';
+
+        // Section Title
+        html += '<div class="section-title">📂 情报板块导航</div>';
+
+        // Card grid (3-2 layout)
+        html += '<div class="card-grid">';
+
+        // Card 1: 市场动态
+        html += '<a href="market.html" class="nav-card">';
+        html += '<span class="badge">' + companyCount + ' 条最新</span>';
+        html += '<div class="icon">🌍</div>';
+        html += '<h3>市场动态</h3>';
+        html += '<p>追踪智能纺织品领域企业动态、融资事件、产品发布、产业合作等市场情报</p>';
+        html += '<div class="arrow">查看详情 →</div>';
+        html += '</a>';
+
+        // Card 2: 政策法规
+        html += '<a href="policy.html" class="nav-card">';
+        html += '<span class="badge">' + policyCount + ' 条最新</span>';
+        html += '<div class="icon">📜</div>';
+        html += '<h3>政策法规</h3>';
+        html += '<p>汇集各国智能纺织品相关产业规划、科研支持、标准制定、资金补贴等政策</p>';
+        html += '<div class="arrow">查看详情 →</div>';
+        html += '</a>';
+
+        // Card 3: 技术前沿
+        html += '<a href="tech.html" class="nav-card">';
+        html += '<span class="badge">' + techCountVal + ' 条最新</span>';
+        html += '<div class="icon">🔬</div>';
+        html += '<h3>技术前沿</h3>';
+        html += '<p>聚焦导电纤维、柔性传感、能量采集等六大技术方向的最新突破与创新</p>';
+        html += '<div class="arrow">查看详情 →</div>';
+        html += '</a>';
+
+        // Card 4: 科研动态
+        html += '<a href="research.html" class="nav-card">';
+        html += '<span class="badge">' + papersCount + ' 条最新</span>';
+        html += '<div class="icon">🎓</div>';
+        html += '<h3>科研动态</h3>';
+        html += '<p>收录智能纺织品领域学术论文、研究报告，跟踪全球科研最新进展</p>';
+        html += '<div class="arrow">查看详情 →</div>';
+        html += '</a>';
+
+        // Card 5: 行规标准
+        html += '<a href="standards.html" class="nav-card">';
+        html += '<span class="badge">' + standardsCount + ' 条最新</span>';
+        html += '<div class="icon">📋</div>';
+        html += '<h3>行规标准</h3>';
+        html += '<p>跟踪国内外智能纺织品行业标准、技术规范、安全要求及合规动态</p>';
+        html += '<div class="arrow">查看详情 →</div>';
+        html += '</a>';
+
+        html += '</div>'; // card-grid
+
+        container.innerHTML = html;
+
+        // Footer update time
+        var footerEl = document.getElementById('footerBar');
+        if (footerEl) {
+            var nowStr = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+            footerEl.innerHTML = '数据更新时间：' + nowStr + ' | 智能纺织品情报系统 · 仅供内部参考';
+        }
+    }
+
+    // Wait for data
+    if (typeof window.SMART_TEXTILE_DATA !== 'undefined') {
+        initPage();
+    } else {
+        var ci = setInterval(function() {
+            if (typeof window.SMART_TEXTILE_DATA !== 'undefined') {
+                clearInterval(ci);
+                initPage();
+            }
+        }, 100);
+        setTimeout(function() {
+            clearInterval(ci);
+            container.innerHTML = '<div class="error-msg">❌ 数据加载超时，请刷新页面重试。</div>';
+        }, 5000);
+    }
+})();
+</script>
+</body>
+</html>
