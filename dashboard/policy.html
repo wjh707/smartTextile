@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>政策法规 - 智能纺织品情报系统</title>
+    <script src="data_policy_data.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #f5f7fa; color: #333; }
+        .navbar { background: linear-gradient(135deg, #1565C0, #00897B); padding: 0 30px; display: flex; align-items: center; height: 64px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+        .navbar .brand { color: #fff; font-size: 20px; font-weight: 700; letter-spacing: 1px; margin-right: 40px; white-space: nowrap; }
+        .navbar .nav-links { display: flex; gap: 6px; flex-wrap: wrap; }
+        .navbar .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; padding: 8px 16px; border-radius: 6px; font-size: 14px; transition: all .2s; }
+        .navbar .nav-links a:hover, .navbar .nav-links a.active { background: rgba(255,255,255,0.18); color: #fff; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 30px 20px; }
+        .page-title { font-size: 28px; color: #1565C0; margin-bottom: 6px; }
+        .page-subtitle { font-size: 14px; color: #888; margin-bottom: 20px; }
+        .back-link { display: inline-block; margin-bottom: 16px; color: #1565C0; text-decoration: none; font-size: 14px; }
+        .back-link:hover { text-decoration: underline; }
+        .filter-bar { background: #fff; border-radius: 10px; padding: 16px 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .filter-bar label { font-size: 13px; color: #666; font-weight: 500; }
+        .filter-bar select { padding: 6px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; color: #333; background: #fff; cursor: pointer; }
+        .filter-bar select:focus { outline: none; border-color: #1565C0; }
+        .filter-bar .count-info { margin-left: auto; font-size: 13px; color: #888; }
+        .list-wrap { display: flex; flex-direction: column; gap: 14px; }
+        .policy-card { background: #fff; border-radius: 12px; padding: 20px 22px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); transition: box-shadow .2s; border-left: 3px solid #1565C0; }
+        .policy-card:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.08); }
+        .policy-card h3 { font-size: 16px; color: #333; margin-bottom: 8px; line-height: 1.5; }
+        .policy-card .meta-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+        .tag { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 500; background: #e3f2fd; color: #1565C0; }
+        .tag.green { background: #e0f2f1; color: #00897B; }
+        .tag.orange { background: #fff3e0; color: #e67e22; }
+        .tag.purple { background: #f3e5f5; color: #8e44ad; }
+        .tag.red { background: #ffebee; color: #c62828; }
+        .tag.teal { background: #e0f2f1; color: #00695c; }
+        .tag.grey { background: #f5f5f5; color: #757575; }
+        .policy-card .summary { font-size: 13px; color: #666; line-height: 1.6; }
+        .policy-card .date-row { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
+        .policy-card .date-row .date { font-size: 12px; color: #999; }
+        .status-badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 500; }
+        .status-implemented { background: #e8f5e9; color: #2e7d32; }
+        .status-pending { background: #fff8e1; color: #f57f17; }
+        .status-draft { background: #f3e5f5; color: #7b1fa2; }
+        .footer { text-align: center; padding: 20px; color: #999; font-size: 12px; border-top: 1px solid #eee; }
+        .empty-msg { text-align: center; padding: 60px; color: #999; font-size: 16px; }
+        .error-msg { text-align: center; padding: 40px; color: #c62828; background: #ffebee; border-radius: 12px; margin: 20px; }
+        @media (max-width: 768px) {
+            .navbar { flex-wrap: wrap; height: auto; padding: 10px 16px; }
+            .navbar .brand { margin-bottom: 6px; font-size: 16px; }
+            .navbar .nav-links a { padding: 6px 12px; font-size: 13px; }
+            .page-title { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar">
+    <div class="brand">🧵 智能纺织品情报系统</div>
+    <div class="nav-links">
+        <a href="index.html">🏠 首页总览</a>
+        <a href="market.html">🌍 市场动态</a>
+        <a href="policy.html" class="active">📜 政策法规</a>
+        <a href="tech.html">🔬 技术前沿</a>
+        <a href="research.html">🎓 科研动态</a>
+        <a href="standards.html">📋 行规标准</a>
+    </div>
+</nav>
+<div class="container">
+    <a href="index.html" class="back-link">← 返回总览</a>
+    <h1 class="page-title">📜 政策法规</h1>
+    <p class="page-subtitle">汇集各国智能纺织品相关产业规划、科研支持、标准制定与资金补贴政策</p>
+
+    <div class="filter-bar" id="filterBar">
+        <label>国家/地区：</label>
+        <select id="regionFilter" onchange="applyFilter()">
+            <option value="all">全部</option>
+        </select>
+        <label>政策类别：</label>
+        <select id="categoryFilter" onchange="applyFilter()">
+            <option value="all">全部</option>
+        </select>
+        <span class="count-info" id="countInfo">共 0 条</span>
+    </div>
+
+    <div class="list-wrap" id="listWrap">
+        <div class="empty-msg">加载中...</div>
+    </div>
+</div>
+<div class="footer">数据更新时间：<span id="updateDate">--</span> | 智能纺织品情报系统 · 仅供内部参考</div>
+<script>
+(function() {
+    var levelMap = { 'national': '国家级', 'provincial': '省级', 'international': '国际级' };
+
+    var allRecords = [];
+
+    function init() {
+        var data = window.POLICY_DATA;
+        if (!data || !data.records) {
+            document.getElementById('listWrap').innerHTML = '<div class="error-msg">❌ 数据加载失败</div>';
+            return;
+        }
+
+        allRecords = data.records.slice().sort(function(a, b) {
+            return (b.date || '').localeCompare(a.date || '');
+        });
+
+        // Populate filters
+        var regionSet = new Set();
+        var catSet = new Set();
+        allRecords.forEach(function(r) {
+            if (r.region) regionSet.add(r.region);
+            if (r.category) catSet.add(r.category);
+        });
+
+        var regionSel = document.getElementById('regionFilter');
+        Array.from(regionSet).sort().forEach(function(v) {
+            var opt = document.createElement('option');
+            opt.value = v; opt.textContent = v;
+            regionSel.appendChild(opt);
+        });
+
+        var catSel = document.getElementById('categoryFilter');
+        Array.from(catSet).sort().forEach(function(v) {
+            var opt = document.createElement('option');
+            opt.value = v; opt.textContent = v;
+            catSel.appendChild(opt);
+        });
+
+        window.applyFilter = function() { render(); };
+        render();
+        document.getElementById('updateDate').textContent = new Date().toISOString().slice(0, 10);
+    }
+
+    function render() {
+        var regionVal = document.getElementById('regionFilter').value;
+        var catVal = document.getElementById('categoryFilter').value;
+
+        var filtered = allRecords;
+        if (regionVal !== 'all') filtered = filtered.filter(function(r) { return r.region === regionVal; });
+        if (catVal !== 'all') filtered = filtered.filter(function(r) { return r.category === catVal; });
+
+        document.getElementById('countInfo').textContent = '共 ' + filtered.length + ' 条';
+
+        var listWrap = document.getElementById('listWrap');
+        if (filtered.length === 0) {
+            listWrap.innerHTML = '<div class="empty-msg">暂无数据</div>';
+            return;
+        }
+
+        var html = '';
+        filtered.forEach(function(r) {
+            var levelLabel = levelMap[r.level] || r.level || '--';
+            var statusClass = r.status === 'implemented' ? 'status-implemented' : (r.status === 'pending' ? 'status-pending' : 'status-draft');
+            var statusLabel = r.status === 'implemented' ? '已实施' : (r.status === 'pending' ? '待审批' : (r.status === 'draft' ? '草案' : r.status || '--'));
+
+            html += '<div class="policy-card">';
+            html += '<h3>' + (r.title || '') + '</h3>';
+            html += '<div class="meta-row">';
+            if (r.region) html += '<span class="tag">' + r.region + '</span>';
+            if (r.category) html += '<span class="tag green">' + r.category + '</span>';
+            html += '<span class="tag purple">' + levelLabel + '</span>';
+            if (r.source) html += '<span class="tag teal">' + r.source + '</span>';
+            html += '</div>';
+            if (r.summary) html += '<div class="summary">' + r.summary + '</div>';
+            html += '<div class="date-row">';
+            html += '<span class="date">📅 ' + (r.date || '') + '</span>';
+            html += '<span class="status-badge ' + statusClass + '">' + statusLabel + '</span>';
+            html += '</div>';
+            html += '</div>';
+        });
+        listWrap.innerHTML = html;
+    }
+
+    if (typeof window.POLICY_DATA !== 'undefined') {
+        init();
+    } else {
+        var ci = setInterval(function() {
+            if (typeof window.POLICY_DATA !== 'undefined') {
+                clearInterval(ci);
+                init();
+            }
+        }, 100);
+        setTimeout(function() { clearInterval(ci); }, 5000);
+    }
+})();
+</script>
+</body>
+</html>
