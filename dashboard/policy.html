@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>政策法规 - 智能纺织品情报系统</title>
     <script src="data_policy_data.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #f5f7fa; color: #333; }
@@ -13,16 +14,34 @@
         .navbar .nav-links { display: flex; gap: 6px; flex-wrap: wrap; }
         .navbar .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; padding: 8px 16px; border-radius: 6px; font-size: 14px; transition: all .2s; }
         .navbar .nav-links a:hover, .navbar .nav-links a.active { background: rgba(255,255,255,0.18); color: #fff; }
-        .container { max-width: 1100px; margin: 0 auto; padding: 30px 20px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 30px 20px; }
         .page-title { font-size: 28px; color: #1565C0; margin-bottom: 6px; }
         .page-subtitle { font-size: 14px; color: #888; margin-bottom: 20px; }
         .back-link { display: inline-block; margin-bottom: 16px; color: #1565C0; text-decoration: none; font-size: 14px; }
         .back-link:hover { text-decoration: underline; }
+
+        /* ---- Stats Cards ---- */
+        .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 20px; }
+        .stat-card { background: #fff; border-radius: 12px; padding: 20px 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); text-align: center; transition: box-shadow .2s, transform .2s; }
+        .stat-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.1); transform: translateY(-2px); }
+        .stat-card .stat-icon { font-size: 26px; margin-bottom: 6px; }
+        .stat-card .stat-num { font-size: 32px; font-weight: 700; color: #1565C0; line-height: 1.2; }
+        .stat-card .stat-num.green { color: #00897B; }
+        .stat-card .stat-label { font-size: 13px; color: #888; margin-top: 4px; }
+
+        /* ---- Charts ---- */
+        .charts-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+        .chart-card { background: #fff; border-radius: 12px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+        .chart-card .chart-title { font-size: 14px; font-weight: 600; color: #333; margin-bottom: 8px; padding-left: 4px; }
+        .chart-box { width: 100%; height: 260px; }
+
+        /* ---- Filter & List ---- */
         .filter-bar { background: #fff; border-radius: 10px; padding: 16px 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
         .filter-bar label { font-size: 13px; color: #666; font-weight: 500; }
         .filter-bar select { padding: 6px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; color: #333; background: #fff; cursor: pointer; }
         .filter-bar select:focus { outline: none; border-color: #1565C0; }
         .filter-bar .count-info { margin-left: auto; font-size: 13px; color: #888; }
+
         .list-wrap { display: flex; flex-direction: column; gap: 14px; }
         .policy-card { background: #fff; border-radius: 12px; padding: 20px 22px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); transition: box-shadow .2s; border-left: 3px solid #1565C0; }
         .policy-card:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.08); }
@@ -42,18 +61,35 @@
         .status-implemented { background: #e8f5e9; color: #2e7d32; }
         .status-pending { background: #fff8e1; color: #f57f17; }
         .status-draft { background: #f3e5f5; color: #7b1fa2; }
-        .footer { text-align: center; padding: 20px; color: #999; font-size: 12px; border-top: 1px solid #eee; }
+
+        .pagination { display: flex; justify-content: center; gap: 8px; margin-top: 24px; flex-wrap: wrap; }
+        .pagination button { padding: 8px 16px; border: 1px solid #ddd; border-radius: 6px; background: #fff; color: #333; cursor: pointer; font-size: 13px; transition: all .2s; }
+        .pagination button:hover { border-color: #1565C0; color: #1565C0; }
+        .pagination button.active { background: #1565C0; color: #fff; border-color: #1565C0; }
+        .pagination button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+        .footer { text-align: center; padding: 20px; color: #999; font-size: 12px; border-top: 1px solid #eee; margin-top: 30px; }
         .empty-msg { text-align: center; padding: 60px; color: #999; font-size: 16px; }
         .error-msg { text-align: center; padding: 40px; color: #c62828; background: #ffebee; border-radius: 12px; margin: 20px; }
+
+        @media (max-width: 900px) {
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+            .charts-row { grid-template-columns: 1fr; }
+        }
         @media (max-width: 768px) {
             .navbar { flex-wrap: wrap; height: auto; padding: 10px 16px; }
             .navbar .brand { margin-bottom: 6px; font-size: 16px; }
             .navbar .nav-links a { padding: 6px 12px; font-size: 13px; }
             .page-title { font-size: 22px; }
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .stats-row { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
+
 <nav class="navbar">
     <div class="brand">🧵 智能纺织品情报系统</div>
     <div class="nav-links">
@@ -65,11 +101,28 @@
         <a href="standards.html">📋 行规标准</a>
     </div>
 </nav>
+
 <div class="container">
     <a href="index.html" class="back-link">← 返回总览</a>
-    <h1 class="page-title">📜 政策法规</h1>
+    <h1 class="page-title">📜 政策法规看板</h1>
     <p class="page-subtitle">汇集各国智能纺织品相关产业规划、科研支持、标准制定与资金补贴政策</p>
 
+    <!-- Stats Cards -->
+    <div class="stats-row" id="statsRow">
+        <div class="stat-card"><div class="stat-icon">📋</div><div class="stat-num" id="statTotal">--</div><div class="stat-label">政策总数</div></div>
+        <div class="stat-card"><div class="stat-icon">🌏</div><div class="stat-num green" id="statCountries">--</div><div class="stat-label">覆盖国家/地区</div></div>
+        <div class="stat-card"><div class="stat-icon">🏛️</div><div class="stat-num" id="statNational">--</div><div class="stat-label">国家级政策</div></div>
+        <div class="stat-card"><div class="stat-icon">📅</div><div class="stat-num green" id="stat2026">--</div><div class="stat-label">2026年新增</div></div>
+    </div>
+
+    <!-- Charts -->
+    <div class="charts-row">
+        <div class="chart-card"><div class="chart-title">📊 政策类别分布</div><div class="chart-box" id="chartCategory"></div></div>
+        <div class="chart-card"><div class="chart-title">📈 年份趋势</div><div class="chart-box" id="chartTrend"></div></div>
+        <div class="chart-card"><div class="chart-title">📍 国家/地区分布</div><div class="chart-box" id="chartRegion"></div></div>
+    </div>
+
+    <!-- Filter Bar -->
     <div class="filter-bar" id="filterBar">
         <label>国家/地区：</label>
         <select id="regionFilter" onchange="applyFilter()">
@@ -82,16 +135,31 @@
         <span class="count-info" id="countInfo">共 0 条</span>
     </div>
 
+    <!-- List -->
     <div class="list-wrap" id="listWrap">
         <div class="empty-msg">加载中...</div>
     </div>
+
+    <!-- Pagination -->
+    <div class="pagination" id="pagination"></div>
 </div>
+
 <div class="footer">数据更新时间：<span id="updateDate">--</span> | 智能纺织品情报系统 · 仅供内部参考</div>
+
 <script>
 (function() {
     var levelMap = { 'national': '国家级', 'provincial': '省级', 'international': '国际级' };
 
     var allRecords = [];
+    var currentPage = 1;
+    var pageSize = 10;
+
+    var chartCategory = null;
+    var chartTrend = null;
+    var chartRegion = null;
+
+    // --- Color scheme ---
+    var COLORS = ['#1565C0', '#1e88e5', '#42a5f5', '#00897B', '#26a69a', '#4db6ac', '#e67e22', '#8e44ad', '#e74c3c', '#f39c12'];
 
     function init() {
         var data = window.POLICY_DATA;
@@ -126,9 +194,122 @@
             catSel.appendChild(opt);
         });
 
-        window.applyFilter = function() { render(); };
+        // Stats
+        renderStats();
+
+        // Charts
+        initCharts();
+
+        // Filter + List
+        window.applyFilter = function() { currentPage = 1; render(); };
         render();
+
         document.getElementById('updateDate').textContent = new Date().toISOString().slice(0, 10);
+    }
+
+    function renderStats() {
+        var total = allRecords.length;
+        var countrySet = new Set(allRecords.map(function(r) { return r.region; }));
+        var nationalCount = allRecords.filter(function(r) { return r.level === 'national'; }).length;
+        var count2026 = allRecords.filter(function(r) { return r.date && r.date.indexOf('2026') === 0; }).length;
+
+        document.getElementById('statTotal').textContent = total;
+        document.getElementById('statCountries').textContent = countrySet.size;
+        document.getElementById('statNational').textContent = nationalCount;
+        document.getElementById('stat2026').textContent = count2026;
+    }
+
+    function initCharts() {
+        // --- Chart 1: Category Pie ---
+        chartCategory = echarts.init(document.getElementById('chartCategory'));
+        var catMap = {};
+        allRecords.forEach(function(r) {
+            var c = r.category || '其他';
+            catMap[c] = (catMap[c] || 0) + 1;
+        });
+        var catData = Object.keys(catMap).map(function(k) {
+            return { name: k, value: catMap[k] };
+        });
+        // Sort by value descending
+        catData.sort(function(a, b) { return b.value - a.value; });
+
+        chartCategory.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {c} ({d}%)' },
+            series: [{
+                type: 'pie',
+                radius: ['35%', '62%'],
+                center: ['50%', '55%'],
+                avoidLabelOverlap: true,
+                label: { show: true, formatter: '{b}\n{d}%', fontSize: 11 },
+                emphasis: { label: { show: true, fontWeight: 'bold' } },
+                data: catData,
+                color: ['#1565C0', '#1e88e5', '#42a5f5', '#00897B', '#26a69a', '#e67e22']
+            }]
+        });
+
+        // --- Chart 2: Year Trend Line ---
+        chartTrend = echarts.init(document.getElementById('chartTrend'));
+        var yearMap = {};
+        allRecords.forEach(function(r) {
+            if (!r.date) return;
+            var y = r.date.slice(0, 4);
+            yearMap[y] = (yearMap[y] || 0) + 1;
+        });
+        var years = Object.keys(yearMap).sort();
+        var yearVals = years.map(function(y) { return yearMap[y]; });
+
+        chartTrend.setOption({
+            tooltip: { trigger: 'axis' },
+            xAxis: { type: 'category', data: years, axisLabel: { fontSize: 11 } },
+            yAxis: { type: 'value', minInterval: 1, axisLabel: { fontSize: 11 } },
+            grid: { left: 40, right: 16, top: 20, bottom: 28 },
+            series: [{
+                type: 'line',
+                data: yearVals,
+                smooth: true,
+                symbol: 'circle',
+                symbolSize: 8,
+                lineStyle: { color: '#1565C0', width: 2 },
+                areaStyle: { color: 'rgba(21,101,192,0.10)' },
+                itemStyle: { color: '#1565C0' }
+            }]
+        });
+
+        // --- Chart 3: Region Bar ---
+        chartRegion = echarts.init(document.getElementById('chartRegion'));
+        var regionMap = {};
+        allRecords.forEach(function(r) {
+            var reg = r.region || '其他';
+            regionMap[reg] = (regionMap[reg] || 0) + 1;
+        });
+        var regNames = Object.keys(regionMap).sort();
+        var regVals = regNames.map(function(r) { return regionMap[r]; });
+
+        chartRegion.setOption({
+            tooltip: { trigger: 'axis' },
+            xAxis: { type: 'category', data: regNames, axisLabel: { fontSize: 11, rotate: regNames.length > 5 ? 20 : 0 } },
+            yAxis: { type: 'value', minInterval: 1, axisLabel: { fontSize: 11 } },
+            grid: { left: 40, right: 40, top: 16, bottom: 32 },
+            series: [{
+                type: 'bar',
+                data: regVals,
+                barWidth: '50%',
+                itemStyle: {
+                    color: function(params) {
+                        var palette = ['#1565C0', '#1e88e5', '#42a5f5', '#00897B', '#26a69a'];
+                        return palette[params.dataIndex % palette.length];
+                    },
+                    borderRadius: [4, 4, 0, 0]
+                }
+            }]
+        });
+
+        // Resize
+        window.addEventListener('resize', function() {
+            chartCategory.resize();
+            chartTrend.resize();
+            chartRegion.resize();
+        });
     }
 
     function render() {
@@ -139,16 +320,24 @@
         if (regionVal !== 'all') filtered = filtered.filter(function(r) { return r.region === regionVal; });
         if (catVal !== 'all') filtered = filtered.filter(function(r) { return r.category === catVal; });
 
-        document.getElementById('countInfo').textContent = '共 ' + filtered.length + ' 条';
+        var total = filtered.length;
+        document.getElementById('countInfo').textContent = '共 ' + total + ' 条';
+
+        var totalPages = Math.ceil(total / pageSize) || 1;
+        if (currentPage > totalPages) currentPage = totalPages;
+
+        var start = (currentPage - 1) * pageSize;
+        var pageItems = filtered.slice(start, start + pageSize);
 
         var listWrap = document.getElementById('listWrap');
-        if (filtered.length === 0) {
+        if (pageItems.length === 0) {
             listWrap.innerHTML = '<div class="empty-msg">暂无数据</div>';
+            renderPagination(totalPages);
             return;
         }
 
         var html = '';
-        filtered.forEach(function(r) {
+        pageItems.forEach(function(r) {
             var levelLabel = levelMap[r.level] || r.level || '--';
             var statusClass = r.status === 'implemented' ? 'status-implemented' : (r.status === 'pending' ? 'status-pending' : 'status-draft');
             var statusLabel = r.status === 'implemented' ? '已实施' : (r.status === 'pending' ? '待审批' : (r.status === 'draft' ? '草案' : r.status || '--'));
@@ -169,7 +358,36 @@
             html += '</div>';
         });
         listWrap.innerHTML = html;
+        renderPagination(totalPages);
     }
+
+    function renderPagination(totalPages) {
+        var pg = document.getElementById('pagination');
+        if (totalPages <= 1) { pg.innerHTML = ''; return; }
+
+        var html = '';
+        html += '<button onclick="goPage(' + (currentPage - 1) + ')" ' + (currentPage <= 1 ? 'disabled' : '') + '>‹ 上一页</button>';
+
+        var startP = Math.max(1, currentPage - 2);
+        var endP = Math.min(totalPages, startP + 4);
+        for (var i = startP; i <= endP; i++) {
+            html += '<button onclick="goPage(' + i + ')" class="' + (i === currentPage ? 'active' : '') + '">' + i + '</button>';
+        }
+        html += '<button onclick="goPage(' + (currentPage + 1) + ')" ' + (currentPage >= totalPages ? 'disabled' : '') + '>下一页 ›</button>';
+        pg.innerHTML = html;
+    }
+
+    window.goPage = function(p) {
+        var regionVal = document.getElementById('regionFilter').value;
+        var catVal = document.getElementById('categoryFilter').value;
+        var filtered = allRecords;
+        if (regionVal !== 'all') filtered = filtered.filter(function(r) { return r.region === regionVal; });
+        if (catVal !== 'all') filtered = filtered.filter(function(r) { return r.category === catVal; });
+        var totalPages = Math.ceil(filtered.length / pageSize) || 1;
+        if (p < 1 || p > totalPages) return;
+        currentPage = p;
+        render();
+    };
 
     if (typeof window.POLICY_DATA !== 'undefined') {
         init();

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>市场动态 - 智能纺织品情报系统</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
     <script src="data_company_news.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -13,11 +14,30 @@
         .navbar .nav-links { display: flex; gap: 6px; flex-wrap: wrap; }
         .navbar .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; padding: 8px 16px; border-radius: 6px; font-size: 14px; transition: all .2s; }
         .navbar .nav-links a:hover, .navbar .nav-links a.active { background: rgba(255,255,255,0.18); color: #fff; }
-        .container { max-width: 1100px; margin: 0 auto; padding: 30px 20px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 30px 20px; }
         .page-title { font-size: 28px; color: #1565C0; margin-bottom: 6px; }
-        .page-subtitle { font-size: 14px; color: #888; margin-bottom: 20px; }
-        .back-link { display: inline-block; margin-bottom: 16px; color: #1565C0; text-decoration: none; font-size: 14px; }
-        .back-link:hover { text-decoration: underline; }
+        .page-subtitle { font-size: 14px; color: #888; margin-bottom: 24px; }
+
+        /* Stats Row */
+        .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 28px; }
+        .stat-card { background: #fff; border-radius: 12px; padding: 20px 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-top: 3px solid #1565C0; transition: transform .2s, box-shadow .2s; }
+        .stat-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(21,101,192,0.12); }
+        .stat-card .num { font-size: 32px; font-weight: 700; color: #1565C0; }
+        .stat-card .label { font-size: 13px; color: #888; margin-top: 4px; }
+        .stat-card:nth-child(2) { border-top-color: #00897B; }
+        .stat-card:nth-child(2) .num { color: #00897B; }
+        .stat-card:nth-child(3) { border-top-color: #e67e22; }
+        .stat-card:nth-child(3) .num { color: #e67e22; }
+        .stat-card:nth-child(4) { border-top-color: #8e44ad; }
+        .stat-card:nth-child(4) .num { color: #8e44ad; }
+
+        /* Chart Row */
+        .chart-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; margin-bottom: 32px; }
+        .chart-card { background: #fff; border-radius: 12px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+        .chart-card .chart-title { font-size: 14px; font-weight: 600; color: #333; margin-bottom: 10px; padding-left: 10px; border-left: 3px solid #1565C0; }
+        .chart-card .chart-box { width: 100%; height: 260px; }
+
+        /* Filter & List */
         .filter-bar { background: #fff; border-radius: 10px; padding: 16px 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
         .filter-bar label { font-size: 13px; color: #666; font-weight: 500; }
         .filter-bar select { padding: 6px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; color: #333; background: #fff; cursor: pointer; }
@@ -45,13 +65,25 @@
         .footer { text-align: center; padding: 20px; color: #999; font-size: 12px; border-top: 1px solid #eee; }
         .empty-msg { text-align: center; padding: 60px; color: #999; font-size: 16px; }
         .error-msg { text-align: center; padding: 40px; color: #c62828; background: #ffebee; border-radius: 12px; margin: 20px; }
+
+        @media (max-width: 1024px) {
+            .chart-row { grid-template-columns: 1fr 1fr; }
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+        }
         @media (max-width: 768px) {
             .navbar { flex-wrap: wrap; height: auto; padding: 10px 16px; }
             .navbar .brand { margin-bottom: 6px; font-size: 16px; }
             .navbar .nav-links a { padding: 6px 12px; font-size: 13px; }
             .page-title { font-size: 22px; }
+            .chart-row { grid-template-columns: 1fr; }
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
             .news-card .card-header { flex-direction: column; }
             .news-card .card-header .date { white-space: normal; }
+        }
+        @media (max-width: 480px) {
+            .stats-row { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .stat-card .num { font-size: 26px; }
+            .container { padding: 20px 12px; }
         }
     </style>
 </head>
@@ -67,28 +99,14 @@
         <a href="standards.html">📋 行规标准</a>
     </div>
 </nav>
-<div class="container">
-    <a href="index.html" class="back-link">← 返回总览</a>
-    <h1 class="page-title">🌍 市场动态</h1>
-    <p class="page-subtitle">追踪智能纺织品领域企业动态、融资事件、产品发布与产业合作</p>
-
-    <div class="filter-bar" id="filterBar">
-        <label>事件类型：</label>
-        <select id="typeFilter" onchange="applyFilter()">
-            <option value="all">全部</option>
-        </select>
-        <span class="count-info" id="countInfo">共 0 条</span>
-    </div>
-
-    <div class="list-wrap" id="listWrap">
-        <div class="empty-msg">加载中...</div>
-    </div>
-
-    <div class="pagination" id="pagination"></div>
+<div class="container" id="appContainer">
+    <div class="error-msg">⏳ 数据加载中...</div>
 </div>
 <div class="footer">数据更新时间：<span id="updateDate">--</span> | 智能纺织品情报系统 · 仅供内部参考</div>
 <script>
 (function() {
+    'use strict';
+
     var eventTypeMap = {
         'corporate_cooperation': '企业合作',
         'product_launch': '产品发布',
@@ -103,44 +121,142 @@
         'technology_breakthrough': 'red',
         'policy': 'teal'
     };
+    // Colors for ECharts pie
+    var chartColors = ['#1565C0', '#00897B', '#e67e22', '#8e44ad', '#c62828'];
+    var chartColorMap = {
+        'corporate_cooperation': '#1565C0',
+        'product_launch': '#00897B',
+        'funding': '#e67e22',
+        'technology_breakthrough': '#8e44ad',
+        'policy': '#c62828'
+    };
 
     var allRecords = [];
     var currentPage = 1;
     var pageSize = 20;
 
+    var container = document.getElementById('appContainer');
+
+    // ---- Data Loading ----
     function init() {
         var data = window.COMPANY_NEWS_DATA;
-        if (!data || !data.records) {
-            document.getElementById('listWrap').innerHTML = '<div class="error-msg">❌ 数据加载失败</div>';
+        if (!data || !data.records || !data.records.length) {
+            container.innerHTML = '<div class="error-msg">❌ 数据加载失败，请确认 data_company_news.js 已正确加载。</div>';
             return;
         }
 
+        // Deduplicate by id (CN-001 and CN-013 are duplicates)
+        var seen = {};
+        data.records.forEach(function(r) {
+            if (!seen[r.id]) {
+                seen[r.id] = true;
+                allRecords.push(r);
+            }
+        });
+
         // Sort by date descending
-        allRecords = data.records.slice().sort(function(a, b) {
+        allRecords.sort(function(a, b) {
             return (b.date || '').localeCompare(a.date || '');
         });
 
-        // Populate filter
-        var typeSet = new Set();
-        allRecords.forEach(function(r) { if (r.event_type) typeSet.add(r.event_type); });
-        var sel = document.getElementById('typeFilter');
-        var typeArr = Array.from(typeSet).sort();
-        typeArr.forEach(function(t) {
-            var opt = document.createElement('option');
-            opt.value = t;
-            opt.textContent = eventTypeMap[t] || t;
-            sel.appendChild(opt);
-        });
+        buildPage();
+        document.getElementById('updateDate').textContent = new Date().toISOString().slice(0, 10);
+    }
 
+    // ---- Build Full Page ----
+    function buildPage() {
+        var html = '';
+
+        // Section title
+        html += '<h1 class="page-title">🌍 市场动态</h1>';
+        html += '<p class="page-subtitle">追踪智能纺织品领域企业动态、融资事件、产品发布与产业合作</p>';
+
+        // Stats Row
+        html += buildStats();
+
+        // Chart Row
+        html += buildChartCards();
+
+        // Filter Bar
+        html += buildFilterBar();
+
+        // List Wrap
+        html += '<div class="list-wrap" id="listWrap"><div class="empty-msg">加载中...</div></div>';
+
+        // Pagination
+        html += '<div class="pagination" id="pagination"></div>';
+
+        container.innerHTML = html;
+
+        // Populate filter dropdown
+        populateFilter();
+
+        // Render list
         window.applyFilter = function() {
             currentPage = 1;
             render();
         };
-
         render();
-        document.getElementById('updateDate').textContent = new Date().toISOString().slice(0, 10);
+
+        // Init charts after DOM is ready
+        setTimeout(function() {
+            initCharts();
+        }, 50);
     }
 
+    // ---- Stats ----
+    function buildStats() {
+        var total = allRecords.length;
+        var regionSet = new Set();
+        var companySet = new Set();
+        var h1Count = 0;
+
+        allRecords.forEach(function(r) {
+            if (r.region) regionSet.add(r.region);
+            if (r.company) companySet.add(r.company);
+            if (r.date && r.date.substring(0, 4) === '2026') h1Count++;
+        });
+
+        return '<div class="stats-row">'
+            + '<div class="stat-card"><div class="num">' + total + '</div><div class="label">📦 事件总数</div></div>'
+            + '<div class="stat-card"><div class="num">' + regionSet.size + '</div><div class="label">🌐 覆盖国家/地区</div></div>'
+            + '<div class="stat-card"><div class="num">' + companySet.size + '</div><div class="label">🏢 涉及企业/机构</div></div>'
+            + '<div class="stat-card"><div class="num">' + h1Count + '</div><div class="label">📅 2026年事件数</div></div>'
+            + '</div>';
+    }
+
+    // ---- Chart Cards ----
+    function buildChartCards() {
+        return '<div class="chart-row">'
+            + '<div class="chart-card"><div class="chart-title">事件类型分布</div><div class="chart-box" id="chartPie"></div></div>'
+            + '<div class="chart-card"><div class="chart-title">月度趋势（近3年）</div><div class="chart-box" id="chartLine"></div></div>'
+            + '<div class="chart-card"><div class="chart-title">国家/地区分布</div><div class="chart-box" id="chartBar"></div></div>'
+            + '</div>';
+    }
+
+    // ---- Filter ----
+    function buildFilterBar() {
+        return '<div class="filter-bar">'
+            + '<label>事件类型：</label>'
+            + '<select id="typeFilter" onchange="applyFilter()">'
+            + '<option value="all">全部</option>'
+            + '</select>'
+            + '<span class="count-info" id="countInfo">共 0 条</span>'
+            + '</div>';
+    }
+
+    function populateFilter() {
+        var sel = document.getElementById('typeFilter');
+        var keys = Object.keys(eventTypeMap);
+        keys.sort().forEach(function(k) {
+            var opt = document.createElement('option');
+            opt.value = k;
+            opt.textContent = eventTypeMap[k];
+            sel.appendChild(opt);
+        });
+    }
+
+    // ---- List Render ----
     function render() {
         var typeVal = document.getElementById('typeFilter').value;
         var filtered = allRecords;
@@ -202,14 +318,111 @@
     }
 
     window.goPage = function(p) {
-        var total = document.getElementById('typeFilter').value === 'all' ? allRecords.length :
-            allRecords.filter(function(r) { return r.event_type === document.getElementById('typeFilter').value; }).length;
-        var totalPages = Math.ceil(total / pageSize) || 1;
+        var typeVal = document.getElementById('typeFilter').value;
+        var filtered = typeVal === 'all' ? allRecords : allRecords.filter(function(r) { return r.event_type === typeVal; });
+        var totalPages = Math.ceil(filtered.length / pageSize) || 1;
         if (p < 1 || p > totalPages) return;
         currentPage = p;
         render();
     };
 
+    // ---- ECharts ----
+    function initCharts() {
+        if (typeof echarts === 'undefined') {
+            console.warn('ECharts not loaded');
+            return;
+        }
+
+        // 1. Pie Chart - Event Type Distribution
+        var pieChart = echarts.init(document.getElementById('chartPie'));
+        var typeCount = {};
+        allRecords.forEach(function(r) {
+            if (r.event_type) {
+                typeCount[r.event_type] = (typeCount[r.event_type] || 0) + 1;
+            }
+        });
+        var pieData = Object.keys(typeCount).map(function(k) {
+            return { name: eventTypeMap[k] || k, value: typeCount[k], itemStyle: { color: chartColorMap[k] || '#999' } };
+        });
+        pieChart.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {c} ({d}%)' },
+            legend: { bottom: 0, textStyle: { fontSize: 11 } },
+            series: [{
+                type: 'pie',
+                radius: ['35%', '65%'],
+                center: ['50%', '45%'],
+                data: pieData,
+                label: { show: false },
+                emphasis: { itemStyle: { shadowBlur: 10, shadowColor: 'rgba(0,0,0,0.3)' } }
+            }]
+        });
+
+        // 2. Line Chart - Monthly Trend (last 3 years)
+        var lineChart = echarts.init(document.getElementById('chartLine'));
+        var monthCount = {};
+        allRecords.forEach(function(r) {
+            if (r.date && r.date.length >= 7) {
+                var ym = r.date.substring(0, 7);
+                monthCount[ym] = (monthCount[ym] || 0) + 1;
+            }
+        });
+        var months = Object.keys(monthCount).sort();
+        var lineData = months.map(function(m) { return monthCount[m]; });
+        lineChart.setOption({
+            tooltip: { trigger: 'axis', formatter: function(p) { return p[0].axisValue + '<br/>事件数: ' + p[0].value; } },
+            grid: { left: 45, right: 16, top: 16, bottom: 36 },
+            xAxis: { type: 'category', data: months, axisLabel: { rotate: 30, fontSize: 10 } },
+            yAxis: { type: 'value', minInterval: 1, axisLabel: { fontSize: 10 } },
+            series: [{
+                type: 'line',
+                data: lineData,
+                smooth: true,
+                lineStyle: { color: '#1565C0', width: 2 },
+                itemStyle: { color: '#1565C0' },
+                areaStyle: { color: 'rgba(21,101,192,0.1)' },
+                symbol: 'circle',
+                symbolSize: 6
+            }]
+        });
+
+        // 3. Bar Chart - Country Distribution
+        var barChart = echarts.init(document.getElementById('chartBar'));
+        var regionCount = {};
+        allRecords.forEach(function(r) {
+            if (r.region) {
+                regionCount[r.region] = (regionCount[r.region] || 0) + 1;
+            }
+        });
+        var regionNames = Object.keys(regionCount).sort();
+        var barData = regionNames.map(function(r) { return regionCount[r]; });
+        barChart.setOption({
+            tooltip: { trigger: 'axis', formatter: function(p) { return p[0].axisValue + '<br/>事件数: ' + p[0].value; } },
+            grid: { left: 45, right: 16, top: 16, bottom: 30 },
+            xAxis: { type: 'category', data: regionNames, axisLabel: { fontSize: 11 } },
+            yAxis: { type: 'value', minInterval: 1, axisLabel: { fontSize: 10 } },
+            series: [{
+                type: 'bar',
+                data: barData,
+                itemStyle: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                        { offset: 0, color: '#00897B' },
+                        { offset: 1, color: '#1565C0' }
+                    ])
+                },
+                barWidth: '45%',
+                borderRadius: [4, 4, 0, 0]
+            }]
+        });
+
+        // Handle resize
+        window.addEventListener('resize', function() {
+            pieChart.resize();
+            lineChart.resize();
+            barChart.resize();
+        });
+    }
+
+    // ---- Bootstrap ----
     if (typeof window.COMPANY_NEWS_DATA !== 'undefined') {
         init();
     } else {
@@ -219,7 +432,10 @@
                 init();
             }
         }, 100);
-        setTimeout(function() { clearInterval(ci); }, 5000);
+        setTimeout(function() {
+            clearInterval(ci);
+            container.innerHTML = '<div class="error-msg">⏱ 数据加载超时，请刷新页面重试。</div>';
+        }, 5000);
     }
 })();
 </script>

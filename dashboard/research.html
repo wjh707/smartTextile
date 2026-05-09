@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>科研动态 - 智能纺织品情报系统</title>
     <script src="data_papers.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #f5f7fa; color: #333; }
@@ -13,31 +14,62 @@
         .navbar .nav-links { display: flex; gap: 6px; flex-wrap: wrap; }
         .navbar .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; padding: 8px 16px; border-radius: 6px; font-size: 14px; transition: all .2s; }
         .navbar .nav-links a:hover, .navbar .nav-links a.active { background: rgba(255,255,255,0.18); color: #fff; }
-        .container { max-width: 1100px; margin: 0 auto; padding: 30px 20px; }
-        .page-title { font-size: 28px; color: #1565C0; margin-bottom: 6px; }
-        .page-subtitle { font-size: 14px; color: #888; margin-bottom: 20px; }
-        .back-link { display: inline-block; margin-bottom: 16px; color: #1565C0; text-decoration: none; font-size: 14px; }
-        .back-link:hover { text-decoration: underline; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 30px 20px; }
+        .page-title { font-size: 26px; color: #1565C0; margin-bottom: 4px; }
+        .page-subtitle { font-size: 14px; color: #888; margin-bottom: 24px; }
+
+        /* Stats Row */
+        .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 28px; }
+        .stat-card { background: #fff; border-radius: 12px; padding: 20px 10px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-top: 3px solid #1565C0; transition: transform .2s, box-shadow .2s; }
+        .stat-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(21,101,192,0.12); }
+        .stat-card .num { font-size: 30px; font-weight: 700; color: #1565C0; }
+        .stat-card .label { font-size: 12px; color: #888; margin-top: 4px; }
+        .stat-card:nth-child(2) { border-top-color: #00897B; }
+        .stat-card:nth-child(2) .num { color: #00897B; }
+        .stat-card:nth-child(3) { border-top-color: #e67e22; }
+        .stat-card:nth-child(3) .num { color: #e67e22; }
+        .stat-card:nth-child(4) { border-top-color: #8e44ad; }
+        .stat-card:nth-child(4) .num { color: #8e44ad; }
+
+        /* Charts Row */
+        .charts-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+        .chart-box { background: #fff; border-radius: 12px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+        .chart-box .chart-title { font-size: 14px; font-weight: 600; color: #555; margin-bottom: 4px; }
+        .chart-container { width: 100%; height: 280px; }
+
+        /* Paper List */
+        .section-title { font-size: 18px; color: #333; margin-bottom: 16px; padding-left: 12px; border-left: 4px solid #1565C0; }
         .list-wrap { display: flex; flex-direction: column; gap: 14px; }
         .paper-card { background: #fff; border-radius: 12px; padding: 20px 22px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); transition: box-shadow .2s; border-left: 3px solid #8e44ad; }
         .paper-card:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.08); }
         .paper-card h3 { font-size: 16px; color: #333; margin-bottom: 8px; line-height: 1.5; }
+        .paper-card h3 a { color: #333; text-decoration: none; }
+        .paper-card h3 a:hover { color: #1565C0; }
         .paper-card .meta-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
-        .tag { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 500; background: #e3f2fd; color: #1565C0; }
+        .tag { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 500; }
         .tag.purple { background: #f3e5f5; color: #8e44ad; }
         .tag.green { background: #e0f2f1; color: #00897B; }
         .tag.orange { background: #fff3e0; color: #e67e22; }
+        .tag.blue { background: #e3f2fd; color: #1565C0; }
         .paper-card .journal-info { font-size: 13px; color: #8e44ad; margin-bottom: 6px; font-weight: 500; }
         .paper-card .abstract { font-size: 13px; color: #666; line-height: 1.6; }
         .paper-card .year { font-size: 12px; color: #999; }
         .footer { text-align: center; padding: 20px; color: #999; font-size: 12px; border-top: 1px solid #eee; }
         .empty-msg { text-align: center; padding: 60px; color: #999; font-size: 16px; }
         .error-msg { text-align: center; padding: 40px; color: #c62828; background: #ffebee; border-radius: 12px; margin: 20px; }
+
+        @media (max-width: 900px) {
+            .charts-row { grid-template-columns: 1fr; }
+        }
         @media (max-width: 768px) {
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
             .navbar { flex-wrap: wrap; height: auto; padding: 10px 16px; }
             .navbar .brand { margin-bottom: 6px; font-size: 16px; }
             .navbar .nav-links a { padding: 6px 12px; font-size: 13px; }
             .page-title { font-size: 22px; }
+        }
+        @media (max-width: 480px) {
+            .stats-row { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -54,15 +86,41 @@
     </div>
 </nav>
 <div class="container">
-    <a href="index.html" class="back-link">← 返回总览</a>
-    <h1 class="page-title">🎓 科研动态</h1>
+    <h1 class="page-title">🎓 科研动态 · 研究看板</h1>
     <p class="page-subtitle">收录智能纺织品领域学术论文与研究报告，跟踪全球科研最新进展</p>
 
+    <!-- Stats Cards -->
+    <div class="stats-row" id="statsRow">
+        <div class="stat-card"><div class="num" id="statTotal">--</div><div class="label">📄 论文总数</div></div>
+        <div class="stat-card"><div class="num" id="statJournals">--</div><div class="label">📰 覆盖期刊数</div></div>
+        <div class="stat-card"><div class="num" id="statEarliest">--</div><div class="label">📅 最早年份</div></div>
+        <div class="stat-card"><div class="num" id="statLatest">--</div><div class="label">📅 最新年份</div></div>
+    </div>
+
+    <!-- Charts -->
+    <div class="charts-row">
+        <div class="chart-box">
+            <div class="chart-title">📊 TOP期刊分布</div>
+            <div class="chart-container" id="chartJournal"></div>
+        </div>
+        <div class="chart-box">
+            <div class="chart-title">📊 发表年份分布</div>
+            <div class="chart-container" id="chartYear"></div>
+        </div>
+        <div class="chart-box">
+            <div class="chart-title">📊 热点关键词 TOP15</div>
+            <div class="chart-container" id="chartKeywords"></div>
+        </div>
+    </div>
+
+    <!-- Paper List -->
+    <div class="section-title">📋 论文列表</div>
     <div class="list-wrap" id="listWrap">
         <div class="empty-msg">加载中...</div>
     </div>
 </div>
 <div class="footer">数据更新时间：<span id="updateDate">--</span> | 智能纺织品情报系统 · 仅供内部参考</div>
+
 <script>
 (function() {
     function truncate(text, maxLen) {
@@ -70,29 +128,166 @@
         return text.length > maxLen ? text.substring(0, maxLen) + '...' : text;
     }
 
+    function safeSlice(arr, n) {
+        if (!Array.isArray(arr)) return [String(arr)];
+        return arr.slice(0, n);
+    }
+
     function init() {
         var data = window.PAPERS_DATA;
-        if (!data || !data.records) {
+        if (!data || !data.records || !data.records.length) {
             document.getElementById('listWrap').innerHTML = '<div class="error-msg">❌ 数据加载失败</div>';
             return;
         }
 
-        // Sort by year descending, then by title
-        var records = data.records.slice().sort(function(a, b) {
+        var records = data.records;
+
+        // ====== Stats ======
+        var totalPapers = records.length;
+        var journalSet = {};
+        var years = [];
+        records.forEach(function(r) {
+            if (r.journal) journalSet[r.journal] = true;
+            if (r.year) years.push(r.year);
+        });
+        var journalCount = Object.keys(journalSet).length;
+        var earliestYear = Math.min.apply(null, years);
+        var latestYear = Math.max.apply(null, years);
+
+        document.getElementById('statTotal').textContent = totalPapers;
+        document.getElementById('statJournals').textContent = journalCount;
+        document.getElementById('statEarliest').textContent = earliestYear;
+        document.getElementById('statLatest').textContent = latestYear;
+
+        // ====== Chart 1: Journal Pie (Top 8) ======
+        var journalFreq = {};
+        records.forEach(function(r) {
+            if (r.journal) journalFreq[r.journal] = (journalFreq[r.journal] || 0) + 1;
+        });
+        var sortedJournals = Object.keys(journalFreq).sort(function(a, b) {
+            return journalFreq[b] - journalFreq[a];
+        });
+        var top8Journals = sortedJournals.slice(0, 8);
+        var pieData = top8Journals.map(function(j) { return { name: j, value: journalFreq[j] }; });
+        var otherCount = sortedJournals.slice(8).reduce(function(sum, j) { return sum + journalFreq[j]; }, 0);
+        if (otherCount > 0) pieData.push({ name: '其他', value: otherCount });
+
+        var chartJournal = echarts.init(document.getElementById('chartJournal'));
+        chartJournal.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {c}篇 ({d}%)' },
+            legend: { orient: 'vertical', right: 5, top: 'center', textStyle: { fontSize: 10 }, itemWidth: 10, itemHeight: 10 },
+            series: [{
+                type: 'pie',
+                radius: ['30%', '65%'],
+                center: ['35%', '50%'],
+                avoidLabelOverlap: true,
+                label: { show: false },
+                emphasis: { label: { show: true, fontSize: 12, fontWeight: 'bold' } },
+                data: pieData,
+                color: ['#1565C0','#00897B','#e67e22','#8e44ad','#27ae60','#e74c3c','#f39c12','#2c3e50','#95a5a6']
+            }]
+        });
+
+        // ====== Chart 2: Year Bar ======
+        var yearFreq = {};
+        records.forEach(function(r) {
+            if (r.year) yearFreq[r.year] = (yearFreq[r.year] || 0) + 1;
+        });
+        var sortedYears = Object.keys(yearFreq).map(Number).sort(function(a, b) { return a - b; });
+        var yearData = sortedYears.map(function(y) { return yearFreq[y]; });
+        var yearLabels = sortedYears.map(String);
+
+        var chartYear = echarts.init(document.getElementById('chartYear'));
+        chartYear.setOption({
+            tooltip: { trigger: 'axis', formatter: function(params) { return params[0].name + '年: ' + params[0].value + '篇'; } },
+            grid: { left: 40, right: 20, top: 30, bottom: 30 },
+            xAxis: { type: 'category', data: yearLabels, axisLabel: { fontSize: 10 } },
+            yAxis: { type: 'value', minInterval: 1, axisLabel: { fontSize: 10 } },
+            series: [{
+                type: 'bar',
+                data: yearData,
+                itemStyle: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                        { offset: 0, color: '#1565C0' },
+                        { offset: 1, color: '#64b5f6' }
+                    ]),
+                    borderRadius: [4, 4, 0, 0]
+                },
+                barWidth: '50%'
+            }]
+        });
+
+        // ====== Chart 3: Keywords Bar (Top 15) ======
+        // English stop words
+        var stopWords = {
+            'the':1,'a':1,'an':1,'and':1,'or':1,'for':1,'of':1,'in':1,'on':1,'to':1,'with':1,'by':1,'as':1,'at':1,
+            'from':1,'is':1,'are':1,'was':1,'were':1,'be':1,'been':1,'has':1,'have':1,'had':1,'do':1,'does':1,
+            'did':1,'will':1,'would':1,'could':1,'should':1,'may':1,'might':1,'can':1,'shall':1,'not':1,'no':1,
+            'nor':1,'but':1,'if':1,'so':1,'this':1,'that':1,'these':1,'those':1,'it':1,'its':1,'they':1,'them':1,
+            'we':1,'you':1,'he':1,'she':1,'his':1,'her':1,'their':1,'our':1,'my':1,'me':1,'all':1,'some':1,'any':1,
+            'each':1,'every':1,'both':1,'which':1,'who':1,'whom':1,'what':1,'how':1,'when':1,'where':1,'why':1,
+            'also':1,'very':1,'just':1,'more':1,'most':1,'much':1,'many':1,'such':1,'than':1,'then':1,'now':1,
+            'about':1,'into':1,'over':1,'after':1,'before':1,'between':1,'through':1,'during':1,'without':1,
+            'within':1,'along':1,'among':1,'upon':1,'while':1,'since':1,'until':1,'up':1,'out':1,'down':1,'off':1,
+            'under':1,'again':1,'further':1,'once':1,'here':1,'there':1,'being':1,'been':1,'having':1,'doing':1,
+            'does':1,'did':1,'done':1,'get':1,'got':1,'make':1,'made':1,'like':1,'well':1,'back':1,'even':1,'still':1,
+            'yet':1,'already':1,'new':1,'other':1,'another':1,'etc':1,'ie':1,'eg':1,'vs':1,'via':1,'per':1
+        };
+
+        var wordFreq = {};
+        records.forEach(function(r) {
+            var text = ((r.title || '') + ' ' + (r.abstract || '')).toLowerCase();
+            var words = text.split(/[^a-z0-9]+/);
+            words.forEach(function(w) {
+                w = w.trim();
+                if (w.length < 4) return;
+                if (stopWords[w]) return;
+                if (/^\d+$/.test(w)) return;
+                if (/^(abstract|introduction|conclusion|methods|results|discussion|materials|background)$/.test(w)) return;
+                wordFreq[w] = (wordFreq[w] || 0) + 1;
+            });
+        });
+
+        var sortedWords = Object.keys(wordFreq).sort(function(a, b) {
+            return wordFreq[b] - wordFreq[a];
+        }).slice(0, 15);
+
+        var kwData = sortedWords.map(function(w) { return wordFreq[w]; });
+        var kwLabels = sortedWords;
+        var colors = ['#1565C0','#1976d2','#1e88e5','#2196f3','#42a5f5','#00897B','#26a69a','#4db6ac','#e67e22','#f39c12',
+                      '#8e44ad','#9b59b6','#e74c3c','#27ae60','#2c3e50'];
+
+        var chartKw = echarts.init(document.getElementById('chartKeywords'));
+        chartKw.setOption({
+            tooltip: { trigger: 'axis', formatter: function(params) { return params[0].name + ': ' + params[0].value + '次'; } },
+            grid: { left: 100, right: 20, top: 20, bottom: 30 },
+            xAxis: { type: 'value', minInterval: 1, axisLabel: { fontSize: 10 } },
+            yAxis: {
+                type: 'category',
+                data: kwLabels.slice().reverse(),
+                axisLabel: { fontSize: 10 },
+                axisLine: { show: false },
+                axisTick: { show: false }
+            },
+            series: [{
+                type: 'bar',
+                data: kwData.slice().reverse().map(function(v, i) {
+                    return { value: v, itemStyle: { color: colors[i] || '#1565C0', borderRadius: [0, 4, 4, 0] } };
+                }),
+                barWidth: 14
+            }]
+        });
+
+        // ====== Paper List ======
+        var sorted = records.slice().sort(function(a, b) {
             if ((b.year || 0) !== (a.year || 0)) return (b.year || 0) - (a.year || 0);
             return (a.title || '').localeCompare(b.title || '');
         });
 
         var listWrap = document.getElementById('listWrap');
-        if (records.length === 0) {
-            listWrap.innerHTML = '<div class="empty-msg">暂无论文数据</div>';
-            document.getElementById('updateDate').textContent = new Date().toISOString().slice(0, 10);
-            return;
-        }
-
         var html = '';
-        records.forEach(function(r) {
-            var abstractShort = truncate(r.abstract, 80);
+        sorted.forEach(function(r) {
+            var abstractShort = truncate(r.abstract, 200);
             var authorsStr = '';
             if (r.authors) {
                 if (Array.isArray(r.authors)) {
@@ -100,21 +295,31 @@
                     if (r.authors.length > 3) authorsStr += ' 等';
                 } else {
                     authorsStr = String(r.authors);
+                    if (authorsStr.length > 60) authorsStr = truncate(authorsStr, 60);
                 }
             }
 
             html += '<div class="paper-card">';
-            html += '<h3>' + (r.title || '') + '</h3>';
+            html += '<h3>' + (r.doi ? '<a href="https://doi.org/' + r.doi + '" target="_blank" rel="noopener">' : '') + (r.title || '') + (r.doi ? '</a>' : '') + '</h3>';
             html += '<div class="meta-row">';
             if (r.journal) html += '<span class="tag purple">' + r.journal + '</span>';
             if (r.year) html += '<span class="tag orange">' + r.year + '年</span>';
             if (authorsStr) html += '<span class="tag green">' + authorsStr + '</span>';
+            if (r.doi) html += '<span class="tag blue">DOI: ' + truncate(r.doi, 30) + '</span>';
             html += '</div>';
             if (abstractShort) html += '<div class="abstract">' + abstractShort + '</div>';
             html += '</div>';
         });
         listWrap.innerHTML = html;
+
         document.getElementById('updateDate').textContent = new Date().toISOString().slice(0, 10);
+
+        // Resize charts on window resize
+        window.addEventListener('resize', function() {
+            chartJournal.resize();
+            chartYear.resize();
+            chartKw.resize();
+        });
     }
 
     if (typeof window.PAPERS_DATA !== 'undefined') {
