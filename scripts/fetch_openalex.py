@@ -44,8 +44,7 @@ CORE_QUERIES = [
 def fetch_works_bulk(query, max_results=200):
     """Fetch papers using title.search filter for precision."""
     encoded = quote(query)
-    url = (f"https://api.openalex.org/works?filter=title.search:{encoded},"
-           f"publication_year:2021-2025"
+    url = (f"https://api.openalex.org/works?filter=title.search:{encoded}"
            f"&sort=cited_by_count:desc&per_page={max_results}"
            f"&select=id,doi,title,authorships,publication_year,cited_by_count,"
            f"primary_location,keywords,abstract_inverted_index")

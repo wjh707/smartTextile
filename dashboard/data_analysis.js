@@ -1,264 +1,400 @@
 window.ANALYSIS_DATA = {
-  "total_papers": 1613,
-  "total_journals": 421,
-  "total_authors": 7172,
-  "year_range": "2021-2025",
+  "total_papers": 1827,
+  "total_journals": 404,
+  "total_authors": 7293,
+  "year_range": "1983-2026",
   "top_journals": [
     {
       "name": "ACS Applied Materials & Interfaces",
-      "count": 76
-    },
-    {
-      "name": "Chemical Engineering Journal",
-      "count": 73
+      "count": 90
     },
     {
       "name": "Sensors",
-      "count": 61
+      "count": 65
     },
     {
       "name": "Nano Energy",
-      "count": 59
+      "count": 62
     },
     {
-      "name": "Advanced Functional Materials",
-      "count": 35
-    },
-    {
-      "name": "Advanced Materials Technologies",
-      "count": 32
+      "name": "Chemical Engineering Journal",
+      "count": 46
     },
     {
       "name": "IEEE Sensors Journal",
-      "count": 31
-    },
-    {
-      "name": "Advanced Fiber Materials",
-      "count": 24
-    },
-    {
-      "name": "Sensors and Actuators A Physical",
-      "count": 24
-    },
-    {
-      "name": "Cellulose",
-      "count": 22
-    },
-    {
-      "name": "Polymers",
-      "count": 22
+      "count": 40
     },
     {
       "name": "ACS Nano",
-      "count": 19
+      "count": 39
     },
     {
-      "name": "SSRN Electronic Journal",
-      "count": 17
+      "name": "Advanced Functional Materials",
+      "count": 39
+    },
+    {
+      "name": "Advanced Materials Technologies",
+      "count": 37
+    },
+    {
+      "name": "Advanced Materials",
+      "count": 35
+    },
+    {
+      "name": "Sensors and Actuators A Physical",
+      "count": 33
+    },
+    {
+      "name": "IEEE Transactions on Antennas and Propagation",
+      "count": 33
     },
     {
       "name": "Textile Research Journal",
-      "count": 16
-    },
-    {
-      "name": "Small",
-      "count": 15
+      "count": 30
     },
     {
       "name": "Journal of Materials Chemistry A",
-      "count": 15
+      "count": 29
+    },
+    {
+      "name": "Journal of Materials Chemistry C",
+      "count": 29
+    },
+    {
+      "name": "Smart Materials and Structures",
+      "count": 25
+    },
+    {
+      "name": "IEEE Antennas and Wireless Propagation Letters",
+      "count": 22
     },
     {
       "name": "Composites Part A Applied Science and Manufacturing",
-      "count": 15
+      "count": 21
     },
     {
-      "name": "ACS Applied Electronic Materials",
-      "count": 14
+      "name": "RSC Advances",
+      "count": 21
     },
     {
-      "name": "Journal of Energy Storage",
-      "count": 13
+      "name": "Advanced Fiber Materials",
+      "count": 20
     },
     {
-      "name": "Biosensors",
-      "count": 13
+      "name": "Sensors and Actuators B Chemical",
+      "count": 20
     }
   ],
   "year_distribution": [
     {
+      "year": 1983,
+      "count": 1
+    },
+    {
+      "year": 1984,
+      "count": 1
+    },
+    {
+      "year": 1988,
+      "count": 1
+    },
+    {
+      "year": 1989,
+      "count": 1
+    },
+    {
+      "year": 1991,
+      "count": 2
+    },
+    {
+      "year": 1992,
+      "count": 1
+    },
+    {
+      "year": 1993,
+      "count": 1
+    },
+    {
+      "year": 1995,
+      "count": 1
+    },
+    {
+      "year": 1996,
+      "count": 1
+    },
+    {
+      "year": 1997,
+      "count": 2
+    },
+    {
+      "year": 1998,
+      "count": 2
+    },
+    {
+      "year": 1999,
+      "count": 4
+    },
+    {
+      "year": 2000,
+      "count": 3
+    },
+    {
+      "year": 2001,
+      "count": 6
+    },
+    {
+      "year": 2002,
+      "count": 5
+    },
+    {
+      "year": 2003,
+      "count": 14
+    },
+    {
+      "year": 2004,
+      "count": 19
+    },
+    {
+      "year": 2005,
+      "count": 21
+    },
+    {
+      "year": 2006,
+      "count": 17
+    },
+    {
+      "year": 2007,
+      "count": 28
+    },
+    {
+      "year": 2008,
+      "count": 24
+    },
+    {
+      "year": 2009,
+      "count": 17
+    },
+    {
+      "year": 2010,
+      "count": 31
+    },
+    {
+      "year": 2011,
+      "count": 25
+    },
+    {
+      "year": 2012,
+      "count": 43
+    },
+    {
+      "year": 2013,
+      "count": 50
+    },
+    {
+      "year": 2014,
+      "count": 51
+    },
+    {
+      "year": 2015,
+      "count": 92
+    },
+    {
+      "year": 2016,
+      "count": 90
+    },
+    {
+      "year": 2017,
+      "count": 109
+    },
+    {
+      "year": 2018,
+      "count": 169
+    },
+    {
+      "year": 2019,
+      "count": 168
+    },
+    {
+      "year": 2020,
+      "count": 195
+    },
+    {
       "year": 2021,
-      "count": 405
+      "count": 159
     },
     {
       "year": 2022,
-      "count": 393
+      "count": 180
     },
     {
       "year": 2023,
-      "count": 348
+      "count": 136
     },
     {
       "year": 2024,
-      "count": 307
+      "count": 110
     },
     {
       "year": 2025,
-      "count": 160
+      "count": 41
+    },
+    {
+      "year": 2026,
+      "count": 4
     }
   ],
   "top_cited": [
     {
-      "title": "Smart textiles for personalized healthcare",
-      "cited": 704,
-      "year": 2022
+      "title": "Wearable Electronics and Smart Textiles: A Critical Review",
+      "cited": 1992,
+      "year": 2014
     },
     {
-      "title": "Electronic Textiles for Wearable Point-of-Care Systems",
-      "cited": 651,
-      "year": 2021
+      "title": "Stretchable, Porous, and Conductive Energy Textiles",
+      "cited": 1467,
+      "year": 2010
     },
     {
-      "title": "Smart textiles for personalized thermoregulation",
-      "cited": 394,
-      "year": 2021
+      "title": "Phase change materials for smart textiles – An overview",
+      "cited": 1154,
+      "year": 2007
     },
     {
-      "title": "Applications of nanotechnology in smart textile industry: A critical review",
-      "cited": 380,
-      "year": 2022
+      "title": "Conductive Fiber‐Based Ultrasensitive Textile Pressure Sensor for Wearable Electronics",
+      "cited": 1149,
+      "year": 2015
     },
     {
-      "title": "Ambulatory Cardiovascular Monitoring Via a Machine‐Learning‐Assisted Textile Triboelectric Sensor",
-      "cited": 372,
-      "year": 2021
+      "title": "All‐Graphene Core‐Sheath Microfibers for All‐Solid‐State, Stretchable Fibriform Supercapacitors and Wearable Electronic Textiles",
+      "cited": 1088,
+      "year": 2013
     },
     {
-      "title": "Conductance-stable liquid metal sheath-core microfibers for stretchy smart fabrics and self-powered sensing",
-      "cited": 339,
-      "year": 2021
+      "title": "Smart Textiles for Electricity Generation",
+      "cited": 909,
+      "year": 2020
     },
     {
-      "title": "Multifunctional MXene/CNTs based flexible electronic textile with excellent strain sensing, electromagnetic interference shielding and Joule heating performances",
-      "cited": 333,
-      "year": 2022
+      "title": "Carbonized Silk Fabric for Ultrastretchable, Highly Sensitive, and Wearable Strain Sensors",
+      "cited": 907,
+      "year": 2016
     },
     {
-      "title": "Recent Progress on Smart Fiber and Textile Based Wearable Strain Sensors: Materials, Fabrications and Applications",
-      "cited": 323,
-      "year": 2022
+      "title": "Printable elastic conductors with a high conductivity for electronic textile applications",
+      "cited": 854,
+      "year": 2015
     },
     {
-      "title": "An ultrathin rechargeable solid-state zinc ion fiber battery for electronic textiles",
-      "cited": 284,
-      "year": 2021
+      "title": "Self-powered textile for wearable electronics by hybridizing fiber-shaped nanogenerators, solar cells, and supercapacitors",
+      "cited": 839,
+      "year": 2016
     },
     {
-      "title": "A self-sustainable wearable multi-modular E-textile bioenergy microgrid system",
-      "cited": 281,
-      "year": 2021
+      "title": "Treatment of textile wastewaters by electrocoagulation using iron and aluminum electrodes",
+      "cited": 820,
+      "year": 2003
     }
   ],
   "keywords": [
     {
       "word": "textile",
-      "count": 2871
+      "count": 3462
     },
     {
       "word": "wearable",
-      "count": 2259
+      "count": 2491
     },
     {
       "word": "sensor",
-      "count": 1650
+      "count": 2073
     },
     {
       "word": "engineering",
-      "count": 1545
-    },
-    {
-      "word": "based",
-      "count": 1540
+      "count": 1806
     },
     {
       "word": "sensors",
-      "count": 1332
+      "count": 1608
+    },
+    {
+      "word": "based",
+      "count": 1520
     },
     {
       "word": "electrical",
-      "count": 1256
-    },
-    {
-      "word": "textiles",
-      "count": 1177
-    },
-    {
-      "word": "fabric",
-      "count": 1109
+      "count": 1488
     },
     {
       "word": "conductive",
-      "count": 1108
+      "count": 1347
+    },
+    {
+      "word": "textiles",
+      "count": 1345
     },
     {
       "word": "strain",
-      "count": 1041
+      "count": 1321
     },
     {
-      "word": "smart",
-      "count": 883
+      "word": "fabric",
+      "count": 1220
     },
     {
-      "word": "antenna",
-      "count": 836
-    },
-    {
-      "word": "system",
-      "count": 822
-    },
-    {
-      "word": "high",
-      "count": 772
-    },
-    {
-      "word": "was",
-      "count": 757
-    },
-    {
-      "word": "monitoring",
-      "count": 752
-    },
-    {
-      "word": "flexible",
-      "count": 748
+      "word": "fiber",
+      "count": 1087
     },
     {
       "word": "electronic",
-      "count": 745
+      "count": 927
     },
     {
-      "word": "applications",
-      "count": 739
+      "word": "antenna",
+      "count": 909
     },
     {
-      "word": "energy",
-      "count": 732
+      "word": "smart",
+      "count": 899
+    },
+    {
+      "word": "system",
+      "count": 861
+    },
+    {
+      "word": "electronics",
+      "count": 860
+    },
+    {
+      "word": "flexible",
+      "count": 843
+    },
+    {
+      "word": "high",
+      "count": 828
     },
     {
       "word": "pressure",
-      "count": 722
+      "count": 815
+    },
+    {
+      "word": "was",
+      "count": 799
     },
     {
       "word": "computer",
-      "count": 709
+      "count": 785
     },
     {
-      "word": "human",
-      "count": 707
+      "word": "applications",
+      "count": 759
     },
     {
-      "word": "performance",
-      "count": 702
+      "word": "energy",
+      "count": 752
+    },
+    {
+      "word": "monitoring",
+      "count": 742
     }
   ]
 };
