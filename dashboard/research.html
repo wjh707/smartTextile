@@ -118,6 +118,7 @@
     <div class="list-wrap" id="listWrap">
         <div class="empty-msg">加载中...</div>
     </div>
+    <div id="pagination" style="margin-top:16px;"></div>
 </div>
 <div class="footer">数据更新时间：<span id="updateDate">--</span> | 智能纺织品情报系统 · 仅供内部参考</div>
 
@@ -278,39 +279,69 @@
             }]
         });
 
-        // ====== Paper List ======
+        // ====== Paper List with Pagination ======
         var sorted = records.slice().sort(function(a, b) {
             if ((b.year || 0) !== (a.year || 0)) return (b.year || 0) - (a.year || 0);
             return (a.title || '').localeCompare(b.title || '');
         });
 
-        var listWrap = document.getElementById('listWrap');
-        var html = '';
-        sorted.forEach(function(r) {
-            var abstractShort = truncate(r.abstract, 200);
-            var authorsStr = '';
-            if (r.authors) {
-                if (Array.isArray(r.authors)) {
-                    authorsStr = r.authors.slice(0, 3).join('; ');
-                    if (r.authors.length > 3) authorsStr += ' 等';
-                } else {
-                    authorsStr = String(r.authors);
-                    if (authorsStr.length > 60) authorsStr = truncate(authorsStr, 60);
-                }
-            }
+        var pageSize = 20;
+        var currentPage = 1;
+        var totalPages = Math.ceil(sorted.length / pageSize);
 
-            html += '<div class="paper-card">';
-            html += '<h3>' + (r.doi ? '<a href="https://doi.org/' + r.doi + '" target="_blank" rel="noopener">' : '') + (r.title || '') + (r.doi ? '</a>' : '') + '</h3>';
-            html += '<div class="meta-row">';
-            if (r.journal) html += '<span class="tag purple">' + r.journal + '</span>';
-            if (r.year) html += '<span class="tag orange">' + r.year + '年</span>';
-            if (authorsStr) html += '<span class="tag green">' + authorsStr + '</span>';
-            if (r.doi) html += '<span class="tag blue">DOI: ' + truncate(r.doi, 30) + '</span>';
-            html += '</div>';
-            if (abstractShort) html += '<div class="abstract">' + abstractShort + '</div>';
-            html += '</div>';
-        });
-        listWrap.innerHTML = html;
+        function renderList(page) {
+            var start = (page - 1) * pageSize;
+            var pageItems = sorted.slice(start, start + pageSize);
+            var html = '';
+            pageItems.forEach(function(r) {
+                var abstractShort = truncate(r.abstract, 200);
+                var authorsStr = '';
+                if (r.authors) {
+                    if (Array.isArray(r.authors)) {
+                        authorsStr = r.authors.slice(0, 3).join('; ');
+                        if (r.authors.length > 3) authorsStr += ' 等';
+                    } else {
+                        authorsStr = String(r.authors);
+                        if (authorsStr.length > 60) authorsStr = truncate(authorsStr, 60);
+                    }
+                }
+
+                html += '<div class="paper-card">';
+                html += '<h3>' + (r.doi ? '<a href="https://doi.org/' + r.doi + '" target="_blank" rel="noopener">' : '') + (r.title || '') + (r.doi ? '</a>' : '') + '</h3>';
+                html += '<div class="meta-row">';
+                if (r.journal) html += '<span class="tag purple">' + r.journal + '</span>';
+                if (r.year) html += '<span class="tag orange">' + r.year + '年</span>';
+                if (authorsStr) html += '<span class="tag green">' + authorsStr + '</span>';
+                if (r.doi) html += '<span class="tag blue">DOI: ' + truncate(r.doi, 30) + '</span>';
+                html += '</div>';
+                if (abstractShort) html += '<div class="abstract">' + abstractShort + '</div>';
+                html += '</div>';
+            });
+            document.getElementById('listWrap').innerHTML = html;
+            renderPagination(page, totalPages);
+        }
+
+        function renderPagination(page, total) {
+            var pgHtml = '<div class="pagination">';
+            pgHtml += '<button onclick="goPage(' + (page - 1) + ')" ' + (page <= 1 ? 'disabled' : '') + '>‹ 上一页</button>';
+            var startP = Math.max(1, page - 2);
+            var endP = Math.min(total, startP + 4);
+            for (var i = startP; i <= endP; i++) {
+                pgHtml += '<button onclick="goPage(' + i + ')" class="' + (i === page ? 'active' : '') + '">' + i + '</button>';
+            }
+            pgHtml += '<button onclick="goPage(' + (page + 1) + ')" ' + (page >= total ? 'disabled' : '') + '>下一页 ›</button>';
+            pgHtml += '<span style="margin-left:12px;font-size:12px;color:#999;">共 ' + sorted.length + ' 篇</span></div>';
+            document.getElementById('pagination').innerHTML = pgHtml;
+        }
+
+        window.goPage = function(p) {
+            if (p < 1 || p > totalPages) return;
+            currentPage = p;
+            renderList(p);
+            window.scrollTo({ top: document.querySelector('.section-title').offsetTop - 80, behavior: 'smooth' });
+        };
+
+        renderList(1);
 
         document.getElementById('updateDate').textContent = new Date().toISOString().slice(0, 10);
 

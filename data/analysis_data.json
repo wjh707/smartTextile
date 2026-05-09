@@ -1,0 +1,256 @@
+{
+  "total_papers": 202,
+  "total_journals": 106,
+  "total_authors": 1627,
+  "year_range": "2023-2025",
+  "top_journals": [
+    {
+      "name": "Nature Communications",
+      "count": 14
+    },
+    {
+      "name": "Nano-Micro Letters",
+      "count": 14
+    },
+    {
+      "name": "Sensors",
+      "count": 8
+    },
+    {
+      "name": "Polymers",
+      "count": 6
+    },
+    {
+      "name": "Molecules",
+      "count": 5
+    },
+    {
+      "name": "Heliyon",
+      "count": 5
+    },
+    {
+      "name": "Environmental Chemistry Letters",
+      "count": 5
+    },
+    {
+      "name": "Chemical Society Reviews",
+      "count": 5
+    },
+    {
+      "name": "RSC Advances",
+      "count": 5
+    },
+    {
+      "name": "Advanced Science",
+      "count": 5
+    },
+    {
+      "name": "Chemical Reviews",
+      "count": 4
+    },
+    {
+      "name": "Advanced Materials",
+      "count": 4
+    },
+    {
+      "name": "Nanomaterials",
+      "count": 4
+    },
+    {
+      "name": "ACS Nano",
+      "count": 4
+    },
+    {
+      "name": "Science Advances",
+      "count": 4
+    },
+    {
+      "name": "IEEE Access",
+      "count": 3
+    },
+    {
+      "name": "Applied Sciences",
+      "count": 3
+    },
+    {
+      "name": "Light Science & Applications",
+      "count": 3
+    },
+    {
+      "name": "Nature",
+      "count": 3
+    },
+    {
+      "name": "Advanced Composites and Hybrid Materials",
+      "count": 2
+    }
+  ],
+  "year_distribution": [
+    {
+      "year": 2023,
+      "count": 156
+    },
+    {
+      "year": 2024,
+      "count": 44
+    },
+    {
+      "year": 2025,
+      "count": 2
+    }
+  ],
+  "top_cited": [
+    {
+      "title": "2023 Alzheimer's disease facts and figures",
+      "cited": 3017,
+      "year": 2023
+    },
+    {
+      "title": "Electrochemical Impedance Spectroscopy─A Tutorial",
+      "cited": 2391,
+      "year": 2023
+    },
+    {
+      "title": "On the Road to 6G: Visions, Requirements, Key Technologies, and Testbeds",
+      "cited": 1883,
+      "year": 2023
+    },
+    {
+      "title": "The school and society",
+      "cited": 1489,
+      "year": 2024
+    },
+    {
+      "title": "Technology Roadmap for Flexible Sensors",
+      "cited": 1199,
+      "year": 2023
+    },
+    {
+      "title": "YOLO-v1 to YOLO-v8, the Rise of YOLO and Its Complementary Nature toward Digital Manufacturing and Industrial Defect Detection",
+      "cited": 1056,
+      "year": 2023
+    },
+    {
+      "title": "Conceptualizing the Circular Economy (Revisited): An Analysis of 221 Definitions",
+      "cited": 1015,
+      "year": 2023
+    },
+    {
+      "title": "Nanotechnology: A Revolution in Modern Industry",
+      "cited": 956,
+      "year": 2023
+    },
+    {
+      "title": "Editor's Choice -- European Society for Vascular Surgery (ESVS) 2024 Clinical Practice Guidelines on the Management of Abdominal Aorto-Iliac Artery Aneurysms",
+      "cited": 942,
+      "year": 2024
+    },
+    {
+      "title": "A review on nanoparticles: characteristics, synthesis, applications, and challenges",
+      "cited": 857,
+      "year": 2023
+    }
+  ],
+  "keywords": [
+    {
+      "word": "review",
+      "count": 214
+    },
+    {
+      "word": "materials",
+      "count": 190
+    },
+    {
+      "word": "applications",
+      "count": 187
+    },
+    {
+      "word": "wearable",
+      "count": 171
+    },
+    {
+      "word": "energy",
+      "count": 168
+    },
+    {
+      "word": "engineering",
+      "count": 163
+    },
+    {
+      "word": "based",
+      "count": 151
+    },
+    {
+      "word": "health",
+      "count": 138
+    },
+    {
+      "word": "sensors",
+      "count": 124
+    },
+    {
+      "word": "challenges",
+      "count": 120
+    },
+    {
+      "word": "research",
+      "count": 105
+    },
+    {
+      "word": "environmental",
+      "count": 105
+    },
+    {
+      "word": "can",
+      "count": 102
+    },
+    {
+      "word": "monitoring",
+      "count": 98
+    },
+    {
+      "word": "mechanical",
+      "count": 96
+    },
+    {
+      "word": "performance",
+      "count": 94
+    },
+    {
+      "word": "including",
+      "count": 92
+    },
+    {
+      "word": "future",
+      "count": 91
+    },
+    {
+      "word": "properties",
+      "count": 90
+    },
+    {
+      "word": "technology",
+      "count": 89
+    },
+    {
+      "word": "recent",
+      "count": 87
+    },
+    {
+      "word": "development",
+      "count": 87
+    },
+    {
+      "word": "data",
+      "count": 85
+    },
+    {
+      "word": "human",
+      "count": 85
+    },
+    {
+      "word": "technologies",
+      "count": 85
+    }
+  ]
+}
