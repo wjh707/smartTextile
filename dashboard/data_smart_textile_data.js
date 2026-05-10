@@ -1424,6 +1424,101 @@ window.SMART_TEXTILE_DATA = {
       "smart_level": "active",
       "event_type": "technology_breakthrough",
       "region": "日本"
+    },
+    {
+      "id": "STI-2026-050",
+      "title": "Computing power woven into hair-thin fibers, paving way for smart clothes, brain implants",
+      "date": "2026-01-23",
+      "source": "People's Daily Online",
+      "summary": "中国科研团队研发出可嵌入纺织纤维的微处理芯片技术，将计算能力编织进发丝粗细的纤维中，为智能服装和脑机接口植入提供新型硬件平台。",
+      "tech_tags": [
+        "embedded-circuit",
+        "integration"
+      ],
+      "scene_tags": [
+        "wearable-computing",
+        "healthcare"
+      ],
+      "smart_level": "ultra",
+      "event_type": "technology_breakthrough",
+      "region": "中国",
+      "url": "http://en.people.cn/"
+    },
+    {
+      "id": "STI-2026-051",
+      "title": "Smart fabric sheets with AI pressure sensors revolutionize hospital bedsore prevention",
+      "date": "2026-04-29",
+      "source": "AJC.com / Georgia Tech",
+      "summary": "Georgia Tech researchers developed smart fabric bed sheets with embedded pressure sensors and AI algorithms that detect and prevent bedsores by alerting nurses to reposition patients in real-time.",
+      "tech_tags": [
+        "flexible-sensor",
+        "communication"
+      ],
+      "scene_tags": [
+        "healthcare"
+      ],
+      "smart_level": "active",
+      "event_type": "technology_breakthrough",
+      "region": "美国",
+      "url": "https://www.ajc.com/"
+    },
+    {
+      "id": "STI-2026-052",
+      "title": "9 Fabric technologies revolutionizing the textiles industry",
+      "date": "2026-05-02",
+      "source": "Apparel Views",
+      "summary": "Apparel Views汇总2026年九大颠覆性纺织技术：自修复织物、相变调温纤维、导电纳米油墨、压电能量采集织物、生物降解智能纺织、可印刷电子织物等。",
+      "tech_tags": [
+        "conductive-fiber",
+        "energy-harvesting",
+        "integration"
+      ],
+      "scene_tags": [
+        "industrial-safety",
+        "smart-home"
+      ],
+      "smart_level": "active",
+      "event_type": "technology_breakthrough",
+      "region": "全球",
+      "url": "https://www.apparelviews.com/"
+    },
+    {
+      "id": "STI-2026-053",
+      "title": "Smart photocatalytic fabrics that clean pollution and generate power simultaneously",
+      "date": "2026-04-27",
+      "source": "Impakter",
+      "summary": "印度IIT研发的光催化智能织物，可同时分解空气污染物并通过摩擦电效应发电，为环保智能纺织品提供双功能解决方案。",
+      "tech_tags": [
+        "energy-harvesting",
+        "conductive-fiber"
+      ],
+      "scene_tags": [
+        "industrial-safety",
+        "wearable-computing"
+      ],
+      "smart_level": "ultra",
+      "event_type": "technology_breakthrough",
+      "region": "印度",
+      "url": "https://impakter.com/"
+    },
+    {
+      "id": "STI-2026-054",
+      "title": "Sustainable Bi-directional thermoregulation fabric for clothing microclimate",
+      "date": "2025-07-22",
+      "source": "Nature Communications",
+      "summary": "发表在Nature Communications上的最新研究，开发出双向热调节智能织物，可根据外部温度自动调节服装微气候，兼具保暖和散热功能。",
+      "tech_tags": [
+        "integration",
+        "conductive-fiber"
+      ],
+      "scene_tags": [
+        "sports-fitness",
+        "military-defense"
+      ],
+      "smart_level": "active",
+      "event_type": "technology_breakthrough",
+      "region": "全球",
+      "doi": "10.1038/s41467-025-xxxxx"
     }
   ]
 };
