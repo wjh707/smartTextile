@@ -105,7 +105,7 @@
 <div class="container">
     <a href="index.html" class="back-link">← 返回总览</a>
     <h1 class="page-title">📜 政策法规看板</h1>
-    <p class="page-subtitle">汇集各国智能纺织品相关产业规划、科研支持、标准制定与资金补贴政策</p>
+    <p class="page-subtitle">汇集各国智能纺织品相关产业规划、标准制定、科研支持、国际贸易与绿色环保政策</p>
 
     <!-- Stats Cards -->
     <div class="stats-row" id="statsRow">
@@ -353,8 +353,14 @@
             if (r.summary) html += '<div class="summary">' + r.summary + '</div>';
             html += '<div class="date-row">';
             html += '<span class="date">📅 ' + (r.date || '') + '</span>';
+            if (r.url) {
+                html += '<a href="' + r.url + '" target="_blank" class="source-link" style="font-size:12px;color:#1565C0;text-decoration:none;">🔗 查看来源</a>';
+            }
             html += '<span class="status-badge ' + statusClass + '">' + statusLabel + '</span>';
             html += '</div>';
+            if (r.url_desc) {
+                html += '<div class="url-hint" style="font-size:11px;color:#999;margin-top:4px;">💡 ' + r.url_desc + '</div>';
+            }
             html += '</div>';
         });
         listWrap.innerHTML = html;
