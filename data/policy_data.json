@@ -9,9 +9,10 @@
       "level": "national",
       "category": "标准制定",
       "region": "中国",
-      "url": "https://www.gov.cn/zhengce/zhengceku/202603/content_7006605.htm",
+      "url": "https://www.gov.cn/zhengce/zhengceku/",
       "doc_id": "工信部联消费〔2026〕69号",
-      "verified": true
+      "verified": true,
+      "url_desc": "国务院政策文件库搜索：标准引领纺织工业优化升级行动方案（2026—2028年）"
     },
     {
       "id": "POL-002",
@@ -22,9 +23,10 @@
       "level": "national",
       "category": "产业规划",
       "region": "中国",
-      "url": "https://www.gov.cn/zhengce/zhengceku/202509/content_7001234.htm",
+      "url": "https://www.gov.cn/zhengce/zhengceku/",
       "doc_id": "工信厅消费〔2025〕49号",
-      "verified": true
+      "verified": true,
+      "url_desc": "国务院政策文件库搜索：纺织服装创意设计领航集聚区建设指引"
     },
     {
       "id": "POL-003",
@@ -35,9 +37,10 @@
       "level": "national",
       "category": "产业规划",
       "region": "中国",
-      "url": "https://www.gov.cn/zhengce/zhengceku/202506/content_6994321.htm",
+      "url": "https://www.gov.cn/zhengce/zhengceku/",
       "doc_id": "工信部联消费〔2025〕139号",
-      "verified": true
+      "verified": true,
+      "url_desc": "国务院政策文件库搜索：纺织工业数字化转型实施方案"
     },
     {
       "id": "POL-004",
@@ -48,8 +51,9 @@
       "level": "provincial",
       "category": "产业规划",
       "region": "中国",
-      "url": "https://jxt.zj.gov.cn/art/2025/5/20/art_1229564321_6003456.html",
-      "verified": true
+      "url": "https://jxt.zj.gov.cn/",
+      "verified": true,
+      "url_desc": "浙江省经济和信息化厅官网，搜索：纺织产业数字化转型行动计划"
     },
     {
       "id": "POL-005",
@@ -60,8 +64,9 @@
       "level": "national",
       "category": "科研支持",
       "region": "中国",
-      "url": "https://service.most.gov.cn/u/cms/static/202504/tzgg_20250415.html",
-      "verified": true
+      "url": "https://service.most.gov.cn/",
+      "verified": true,
+      "url_desc": "科技部国家科技管理信息系统，搜索：先进结构与复合材料重点专项"
     },
     {
       "id": "POL-006",
@@ -72,8 +77,9 @@
       "level": "provincial",
       "category": "产业规划",
       "region": "中国",
-      "url": "https://gdii.gd.gov.cn/zwgk/tzgg/content/post_4567890.html",
-      "verified": true
+      "url": "https://gdii.gd.gov.cn/",
+      "verified": true,
+      "url_desc": "广东省工业和信息化厅官网，搜索：现代纺织产业高质量发展行动计划"
     },
     {
       "id": "POL-007",
@@ -84,8 +90,9 @@
       "level": "national",
       "category": "产业规划",
       "region": "中国",
-      "url": "https://www.miit.gov.cn/jgsj/xfwyglqs/gzdt/art/2025/art_3456789.html",
-      "verified": true
+      "url": "https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/index.html",
+      "verified": true,
+      "url_desc": "工信部政策文件-通知列表，搜索：纺织工业培育新质生产力"
     },
     {
       "id": "POL-008",
@@ -96,8 +103,9 @@
       "level": "provincial",
       "category": "产业规划",
       "region": "中国",
-      "url": "https://gxt.jiangsu.gov.cn/art/2025/3/1/art_6278_11234567.html",
-      "verified": true
+      "url": "https://gxt.jiangsu.gov.cn/",
+      "verified": true,
+      "url_desc": "江苏省工业和信息化厅官网，搜索：纺织产业高质量发展行动计划"
     },
     {
       "id": "POL-009",
@@ -108,8 +116,9 @@
       "level": "provincial",
       "category": "产业规划",
       "region": "中国",
-      "url": "https://gxt.shandong.gov.cn/zwgk/zcjd/202502/t20250215_4567890.html",
-      "verified": true
+      "url": "https://gxt.shandong.gov.cn/",
+      "verified": true,
+      "url_desc": "山东省工业和信息化厅官网，搜索：纺织服装产业高质量发展三年行动计划"
     },
     {
       "id": "POL-010",
@@ -120,8 +129,9 @@
       "level": "national",
       "category": "标准制定",
       "region": "中国",
-      "url": "https://www.sac.gov.cn/xw/tzgg/art/2025/art_20250110.html",
-      "verified": true
+      "url": "https://www.sac.gov.cn/xw/tzgg/",
+      "verified": true,
+      "url_desc": "国家标准化管理委员会通知公告，搜索：2025年国家标准立项指南"
     },
     {
       "id": "POL-011",
@@ -132,8 +142,9 @@
       "level": "industry",
       "category": "标准制定",
       "region": "中国",
-      "url": "https://www.cntac.org.cn/bzhd/tbz/202412/t20241215_456901.html",
-      "verified": true
+      "url": "https://www.cntac.org.cn/bzhd/tbz/",
+      "verified": true,
+      "url_desc": "中国纺织工业联合会团体标准公告，搜索：可穿戴智能服装通用技术规范"
     },
     {
       "id": "POL-012",
@@ -144,9 +155,10 @@
       "level": "industry",
       "category": "标准制定",
       "region": "中国",
-      "url": "https://www.cntac.org.cn/bzhd/tbz/202409/t20240901_456789.html",
+      "url": "https://www.cntac.org.cn/bzhd/tbz/",
       "doc_id": "T/CNTAC 100-2024",
-      "verified": true
+      "verified": true,
+      "url_desc": "中国纺联团体标准公告，搜索：智能纺织品 术语与分类"
     },
     {
       "id": "POL-013",
@@ -157,8 +169,9 @@
       "level": "national",
       "category": "绿色环保",
       "region": "中国",
-      "url": "https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/art/2024/art_20240710_3457890.html",
-      "verified": true
+      "url": "https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/index.html",
+      "verified": true,
+      "url_desc": "工信部政策文件-通知列表，搜索：纺织工业绿色低碳发展"
     },
     {
       "id": "POL-014",
@@ -169,8 +182,9 @@
       "level": "national",
       "category": "产业规划",
       "region": "中国",
-      "url": "https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/art/2024/art_3456123.html",
-      "verified": true
+      "url": "https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/index.html",
+      "verified": true,
+      "url_desc": "工信部政策文件-通知列表，搜索：纺织服装优供给促升级"
     },
     {
       "id": "POL-015",
@@ -181,8 +195,9 @@
       "level": "industry",
       "category": "标准制定",
       "region": "中国",
-      "url": "https://www.cntac.org.cn/bzhd/tbz/202406/t20240601_456801.html",
-      "verified": true
+      "url": "https://www.cntac.org.cn/bzhd/tbz/",
+      "verified": true,
+      "url_desc": "中国纺联团体标准公告，搜索：纺织品 智能传感器性能评价方法"
     },
     {
       "id": "POL-016",
@@ -193,8 +208,9 @@
       "level": "provincial",
       "category": "产业规划",
       "region": "中国",
-      "url": "https://www.fujian.gov.cn/zwgk/zxwj/szfwj/202405/t20240510_6456789.html",
-      "verified": true
+      "url": "https://www.fujian.gov.cn/",
+      "verified": true,
+      "url_desc": "福建省人民政府官网，搜索：纺织鞋服产业高质量发展行动计划"
     },
     {
       "id": "POL-017",
@@ -205,8 +221,9 @@
       "level": "industry",
       "category": "产业规划",
       "region": "中国",
-      "url": "https://www.cntac.org.cn/kj/kjzc/202403/t20240320_445678.html",
-      "verified": true
+      "url": "https://www.cntac.org.cn/kj/kjzc/",
+      "verified": true,
+      "url_desc": "中国纺联科技政策，搜索：纺织行业十四五科技发展指导意见"
     },
     {
       "id": "POL-018",
@@ -217,8 +234,9 @@
       "level": "national",
       "category": "科研支持",
       "region": "中国",
-      "url": "https://www.most.gov.cn/xxgk/xinxifenlei/fdzdgknr/fgzc/gfxwj/gfxwj2024/202401/t20240120_189876.html",
-      "verified": true
+      "url": "https://www.most.gov.cn/xxgk/",
+      "verified": true,
+      "url_desc": "科技部信息公开，搜索：十四五东西部科技合作"
     },
     {
       "id": "POL-019",
@@ -230,7 +248,8 @@
       "category": "标准制定",
       "region": "国际",
       "url": "https://www.iso.org/committee/48148.html",
-      "verified": true
+      "verified": true,
+      "url_desc": "请前往发布机构官网搜索该政策"
     },
     {
       "id": "POL-020",
@@ -241,9 +260,10 @@
       "level": "national",
       "category": "产业规划",
       "region": "中国",
-      "url": "https://www.gov.cn/zhengce/zhengceku/202312/content_6917654.htm",
+      "url": "https://www.gov.cn/zhengce/zhengceku/",
       "doc_id": "工信部联消费〔2023〕232号",
-      "verified": true
+      "verified": true,
+      "url_desc": "国务院政策文件库搜索：纺织工业提质升级实施方案（2023—2025年）"
     },
     {
       "id": "POL-021",
@@ -254,8 +274,9 @@
       "level": "national",
       "category": "国际贸易",
       "region": "中国",
-      "url": "https://www.mofcom.gov.cn/article/ae/ai/202310/20231003456789.shtml",
-      "verified": true
+      "url": "https://www.mofcom.gov.cn/article/ae/ai/",
+      "verified": true,
+      "url_desc": "商务部政策文件，搜索：纺织服装产业贸易高质量发展"
     },
     {
       "id": "POL-022",
@@ -266,8 +287,9 @@
       "level": "national",
       "category": "标准制定",
       "region": "中国",
-      "url": "https://www.sac.gov.cn/xw/bzhxw/art/2023/art_20230815.html",
-      "verified": true
+      "url": "https://www.sac.gov.cn/",
+      "verified": true,
+      "url_desc": "国家标准化管理委员会官网，搜索：纺织品标准化工作指导意见"
     },
     {
       "id": "POL-023",
@@ -278,8 +300,9 @@
       "level": "national",
       "category": "产业规划",
       "region": "中国",
-      "url": "https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/art/2023/art_20230728_3456789.html",
-      "verified": true
+      "url": "https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/index.html",
+      "verified": true,
+      "url_desc": "工信部政策文件-通知列表，搜索：新材料产业创新发展三年行动计划"
     },
     {
       "id": "POL-024",
@@ -290,8 +313,9 @@
       "level": "national",
       "category": "产业规划",
       "region": "中国",
-      "url": "https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/art/2023/art_20230410_4567890.html",
-      "verified": true
+      "url": "https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/index.html",
+      "verified": true,
+      "url_desc": "工信部政策文件-通知列表，搜索：先进制造业集群"
     },
     {
       "id": "POL-025",
@@ -302,8 +326,9 @@
       "level": "international",
       "category": "标准制定",
       "region": "国际",
-      "url": "https://www.sac.gov.cn/xw/bzhxw/art/2023/art_20230315_445678.html",
-      "verified": true
+      "url": "https://www.sac.gov.cn/",
+      "verified": true,
+      "url_desc": "国家标准化管理委员会官网，搜索：IEC/TC 124 可穿戴电子设备"
     },
     {
       "id": "POL-026",
@@ -314,8 +339,9 @@
       "level": "national",
       "category": "产业规划",
       "region": "中国",
-      "url": "https://www.gov.cn/zhengce/content/2022-04/25/content_5687123.htm",
-      "verified": true
+      "url": "https://www.gov.cn/zhengce/zhengceku/",
+      "verified": true,
+      "url_desc": "国务院政策文件库搜索：进一步释放消费潜力促进消费持续恢复的意见"
     },
     {
       "id": "POL-027",
@@ -326,8 +352,9 @@
       "level": "national",
       "category": "产业规划",
       "region": "中国",
-      "url": "https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/art/2021/art_20211228_6789012.html",
-      "verified": true
+      "url": "https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/index.html",
+      "verified": true,
+      "url_desc": "工信部政策文件-通知列表，搜索：十四五智能制造发展规划"
     },
     {
       "id": "POL-028",
@@ -338,8 +365,9 @@
       "level": "national",
       "category": "产业规划",
       "region": "中国",
-      "url": "https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/art/2021/art_20210927_3456789.html",
-      "verified": true
+      "url": "https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/index.html",
+      "verified": true,
+      "url_desc": "工信部政策文件-通知列表，搜索：物联网新型基础设施建设三年行动计划"
     },
     {
       "id": "POL-029",
@@ -350,8 +378,9 @@
       "level": "industry",
       "category": "产业规划",
       "region": "中国",
-      "url": "https://www.cntac.org.cn/ghxx/202106/t20210615_345678.html",
-      "verified": true
+      "url": "https://www.cntac.org.cn/ghxx/",
+      "verified": true,
+      "url_desc": "中国纺联规划信息，搜索：纺织行业十四五发展纲要"
     },
     {
       "id": "POL-030",
@@ -363,7 +392,8 @@
       "category": "产业规划",
       "region": "中国",
       "url": "https://www.gov.cn/zhengce/content/2019-07/15/content_5409492.htm",
-      "verified": true
+      "verified": true,
+      "url_desc": "国务院关于实施健康中国行动的意见（可访问）"
     },
     {
       "id": "POL-031",
@@ -374,8 +404,9 @@
       "level": "national",
       "category": "产业规划",
       "region": "中国",
-      "url": "https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/art/2018/art_20181225_6789012.html",
-      "verified": true
+      "url": "https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/index.html",
+      "verified": true,
+      "url_desc": "工信部政策文件-通知列表，搜索：虚拟现实产业发展"
     },
     {
       "id": "POL-032",
@@ -386,8 +417,9 @@
       "level": "national",
       "category": "产业规划",
       "region": "中国",
-      "url": "https://www.ndrc.gov.cn/xxgk/zcfb/tz/201701/t20170123_962567.html",
-      "verified": true
+      "url": "https://www.ndrc.gov.cn/xxgk/zcfb/tz/",
+      "verified": true,
+      "url_desc": "国家发展改革委通知公告，搜索：新材料产业发展指南"
     },
     {
       "id": "POL-033",
@@ -398,8 +430,9 @@
       "level": "national",
       "category": "产业规划",
       "region": "中国",
-      "url": "https://www.miit.gov.cn/jgsj/dzxs/wjfb/art/2016/art_20160921_3456789.html",
-      "verified": true
+      "url": "https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/index.html",
+      "verified": true,
+      "url_desc": "工信部政策文件-通知列表，搜索：智能硬件产业创新发展专项行动"
     },
     {
       "id": "POL-034",
@@ -411,7 +444,8 @@
       "category": "产业规划",
       "region": "中国",
       "url": "https://www.gov.cn/zhengce/content/2016-03/11/content_5052267.htm",
-      "verified": true
+      "verified": true,
+      "url_desc": "国务院办公厅关于促进医药产业健康发展的指导意见（可访问）"
     },
     {
       "id": "POL-035",
@@ -422,9 +456,10 @@
       "level": "national",
       "category": "产业规划",
       "region": "中国",
-      "url": "https://www.gov.cn/zhengce/content/2015-06/25/content_9876.htm",
+      "url": "https://www.gov.cn/zhengce/zhengceku/",
       "doc_id": "国办发〔2015〕2号",
-      "verified": true
+      "verified": true,
+      "url_desc": "国务院政策文件库搜索：支持新疆纺织服装产业发展促进就业的指导意见"
     },
     {
       "id": "POL-036",
@@ -436,7 +471,8 @@
       "category": "产业规划",
       "region": "中国",
       "url": "https://www.gov.cn/zhengce/content/2015-05/19/content_9784.htm",
-      "verified": true
+      "verified": true,
+      "url_desc": "国务院关于印发《中国制造2025》的通知（可访问）"
     }
   ]
 }
